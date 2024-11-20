@@ -200,7 +200,7 @@ class FWC_Aero:
         if self.airfoil_wing == 'naca0012':
             airfoil = np.column_stack(self.generate_naca_camber(P=0,M=0))
         else:
-            airfoil = np.loadtxt('../data/' + self.airfoil_wing + '_camber.txt')
+            airfoil = np.loadtxt('../data/aircraft_database/' + self.airfoil_wing + '_camber.txt')
 
         return airfoil
     
@@ -212,6 +212,6 @@ class FWC_Aero:
         if self.airfoil_htail == 'naca0012':
             airfoil = np.column_stack(self.generate_naca_camber(P=0,M=0))
         else:
-            airfoil = np.loadtxt('../data/' + self.airfoil_htail + '_camber.txt')
+            airfoil = np.loadtxt('../data/aircraft_database/' + self.airfoil_htail + '_camber.txt')
 
         return airfoil
