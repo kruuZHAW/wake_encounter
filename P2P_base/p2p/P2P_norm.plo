@@ -1,0 +1,112 @@
+set terminal postscript portrait enhanced color solid 14; set output "P2P.ps"             ; set title   "P2P prediction"               
+
+set noclip points
+set clip one
+set noclip two
+set border
+set format y "%g"
+set format z "%g"
+set nogrid
+
+set label
+
+set noarrow
+set nologscale
+set offsets 0, 0, 0, 0
+set nopolar
+set angles radians
+set noparametric
+set view 0, 0, 1, 1
+set samples 100, 100
+set isosamples 100, 100
+set nosurface
+set clabel
+set nohidden3d
+set cntrparam bspline
+set cntrparam order 6 
+set cntrparam points 1
+set cntrparam levels incremental -2,0.2,2
+set pointsize 1.3
+set tics in
+set ticslevel 0.5
+set xtics
+set ytics
+set ztics
+set rrange [-0 : 10]
+set trange [-5 : 5]
+set urange [-5 : 5]
+set vrange [-5 : 5]
+set xrange [0:240]
+set autoscale
+set zero 1e-10
+
+
+set multiplot
+set origin 0.01,0.44
+set size 0.5,0.41
+set xlabel "t*" offset 0,0
+set ylabel "z*" offset 1,0
+set autoscale 
+set xrange [0:7]
+set yrange [0:3]
+set key samplen 1 
+plot 'lidar_norm.dat' using 1:2  t '' w p lt 1 lw 2 pt 2,\
+'lidar_norm.dat' using 5:6  t '' w p lt 3 lw 2 pt 6,\
+'P2P_lev_z.dat' using 1:2 t  '' w lines lt 2 lw 2,\
+'P2P_lev_z.dat' using 1:3 t  '' w lines lt 2 lw 2,\
+'P2P_lev_z.dat' using 1:4 t  '' w lines lt 5 lw 2,\
+'P2P_lev_z.dat' using 1:5 t  '' w lines lt 5 lw 2,\
+'TRAJEC.DAT' using 1:4 t  ''  w l lt 1 lw 2,\
+'TRAJEC.DAT' using 1:7 t  ''  w l lt 3 lw 2
+
+
+set origin 0.5,0.44
+set yrange [-12:12]
+set ylabel "y*" #0,0
+set title " " #-1,0
+plot 'TRAJEC.DAT' using 1:3 t  'D2P port'  w l lt 1 lw 2,\
+'TRAJEC.DAT' using 1:6 t  'D2P starboard'  w l lt 3 lw 2,\
+'P2P_lev_y.dat' using 1:2 t  'P2P 2{/Symbol s}' w lines lt 2 lw 2,\
+'P2P_lev_y.dat' using 1:3 t  '' w lines lt 2 lw 2,\
+'P2P_lev_y.dat' using 1:4 t  'P2P 3{/Symbol s}' w lines lt 5 lw 2,\
+'P2P_lev_y.dat' using 1:5 t  '' w lines lt 5 lw 2,\
+'lidar_norm.dat' using 1:3  t '' w p lt 1 lw 2 pt 2,\
+'lidar_norm.dat' using 5:7  t '' w p lt 3 lw 2 pt 6
+
+
+set origin 0.01,0.06
+set size 0.5,0.41
+set title ' '
+set ylabel "{/Symbol G}*" #0,0
+set yrange [0:1.2]
+set key samplen 1
+plot 'TRAJEC.DAT' using 1:(-$2) t  ''  w l lt 1 lw 2,\
+'TRAJEC.DAT' using 1:5 t  ''  w l lt 3 lw 2,\
+'P2P_lev_g.dat' using 1:2 t  '' w lines lt 2 lw 2,\
+'P2P_lev_g.dat' using 1:3 t  '' w lines lt 2 lw 2,\
+'P2P_lev_g.dat' using 1:4 t  '' w lines lt 5 lw 2,\
+'P2P_lev_g.dat' using 1:5 t  '' w lines lt 5 lw 2,\
+'lidar_norm.dat' using 1:4 t 'starboard' w p lt 1 lw 2 pt 2,\
+'lidar_norm.dat' using 5:8 t 'lidar port' w p lt 3 lw 2 pt 6
+
+
+set xzeroaxis
+set yzeroaxis
+set origin 0.5,0.06
+set pointsize 1.2
+set title ' '
+set xlabel  "u*, v*, w*, q*, {/Symbol e}*, N*" #0,0
+set autoscale 
+set yrange [0:4]
+set xtics 1.0
+set ylabel "z*" #0.1,0
+set key right samplen 1
+plot  'met.dat' using 2:1 t  'u*'  w linesp lt 1 lw 2,\
+'met.dat' using 3:1 t  'v*'  w linesp lt 2 lw 2,\
+'met.dat' using 5:1 t  'q*'  w linesp lt 4 lw 2,\
+'met.dat' using (10.*$7):1 t  '10 {/Symbol e}*'  w linesp lt 8 lw 2 pt 8,\
+'met.dat' using 6:1 t  'N*'  w linesp lt 14 lw 2 pt 14
+set nomultiplot
+
+
+
