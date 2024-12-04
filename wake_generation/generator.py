@@ -18,8 +18,6 @@ warnings.simplefilter(action="ignore", category=FutureWarning)
 
 from P2P_base.wake import aircraft, meteo, wake
 
-
-
 CEL2K=273.15 # Celsuis to Kelvin
 L = 0.0065 # Temperature lapse rate in K/m accroding to ISA: https://en.wikipedia.org/wiki/International_Standard_Atmosphere
 R = 8.3144598 # Universal gas constant in J/(mol.K)
@@ -84,7 +82,7 @@ def calculate_potential_temp(
 
 
 @click.command()
-@click.argument("run_id", type=int) # simulation id
+@click.argument("run_id", type=int) # simulation id for the wake
 @click.argument("alt_aircraft", type=float) # altitude above ground in m
 @click.argument("spread", type=int) # spread of the range of altitudes around the aircraft in m
 @click.argument("step", type=int) # step size for the altitude range in m
@@ -134,7 +132,8 @@ def main(
     qqs = [qq]*len(alts)
     tkes = [tke]*len(alts)
     
-    fpath_meteo = os.path.abspath(os.path.join(os.getcwd(), os.pardir, "data", "simulations", str(run_id), "wakes", "meteo.dat"))
+    # fpath_meteo = os.path.abspath(os.path.join(os.getcwd(), os.pardir, "data", "simulations", str(run_id), "wakes", "meteo.dat"))
+    fpath_meteo = os.path.abspath(os.path.join(os.getcwd(), os.pardir, "data", "simulations", "wakes", str(run_id), "meteo.dat"))
     os.makedirs(os.path.dirname(fpath_meteo), exist_ok=True)
     
     with open(fpath_meteo, "w") as f:
@@ -183,7 +182,8 @@ def main(
     b0 = s_l * wingspan
     
     
-    fpath_aircraft = os.path.abspath(os.path.join(os.getcwd(), os.pardir, "data", "simulations", str(run_id), "wakes", "ac_init.dat"))
+    # fpath_aircraft = os.path.abspath(os.path.join(os.getcwd(), os.pardir, "data", "simulations", str(run_id), "wakes", "ac_init.dat"))
+    fpath_aircraft = os.path.abspath(os.path.join(os.getcwd(), os.pardir, "data", "simulations", "wakes", str(run_id), "ac_init.dat"))
     os.makedirs(os.path.dirname(fpath_aircraft), exist_ok=True)
 
     with open(fpath_aircraft, "w") as f:
@@ -214,13 +214,13 @@ def main(
     wakes = wake.Wake.generate(aircraft=aircraft_data,
                               meteo=meteo_data,
                               edr=edr_data,
-                              path= os.path.abspath(os.path.join(os.getcwd(), os.pardir, "data", "simulations", str(run_id), "wakes")),
-                            #   run_id=run_id,
+                            #   path= os.path.abspath(os.path.join(os.getcwd(), os.pardir, "data", "simulations", str(run_id), "wakes")),
+                              path= os.path.abspath(os.path.join(os.getcwd(), os.pardir, "data", "simulations", "wakes", str(run_id))),
                               verbose=True) 
     
-    wakes.df.to_parquet(os.path.abspath(os.path.join(os.getcwd(), "..", "data", "simulations", str(run_id), "wakes", "wakes_df.parquet")))
-    shutil.rmtree(os.path.abspath(os.path.join(os.getcwd(), os.pardir, "data", "simulations", str(run_id), "wakes", "inputs")))
-    shutil.rmtree(os.path.abspath(os.path.join(os.getcwd(), os.pardir, "data", "simulations", str(run_id), "wakes", "results")))
+    wakes.df.to_parquet(os.path.abspath(os.path.join(os.getcwd(), "..", "data", "simulations", "wakes", str(run_id), "wakes_df.parquet")))
+    shutil.rmtree(os.path.abspath(os.path.join(os.getcwd(), os.pardir, "data", "simulations", "wakes", str(run_id), "inputs")))
+    shutil.rmtree(os.path.abspath(os.path.join(os.getcwd(), os.pardir, "data", "simulations", "wakes", str(run_id), "results")))
     
     inputs = {
     "run_id": [run_id],                
@@ -240,7 +240,7 @@ def main(
     "qq": [qq],                  
     "gpa": [gpa]                  
     }
-    pd.DataFrame(inputs).to_parquet(os.path.join(os.getcwd(), os.pardir, "data", "simulations", str(run_id), "wakes", "param.parquet"))
+    pd.DataFrame(inputs).to_parquet(os.path.join(os.getcwd(), os.pardir, "data", "simulations", "wakes", str(run_id), "param.parquet"))
     
     
     click.echo("Done !")

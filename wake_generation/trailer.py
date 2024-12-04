@@ -141,15 +141,17 @@ def generate_encounter(v: float, # m/s, velocity of the aircraft
 @click.command()
 @click.argument("run_id", type=int) # simulation id
 
+@click.option('--wake_id', default=0, type=int) #Wake scenario to be used
 @click.option('--aircraft_type', default="A320", type=str) # aircraft type of the trailer
 @click.option('--crop_distance', default=2000, type=float) # distance from the closest wake from which we crop the trailer trajectory in m
 
 def main(
     run_id:int,
-    crop_distance:int,
+    wake_id:int,
     aircraft_type:str,
+    crop_distance:int,
 ):
-    fpath_wakes = os.path.abspath(os.path.join(os.getcwd(), "..", "data", "simulations", str(run_id), "wakes", "wakes_df.parquet"))
+    fpath_wakes = os.path.abspath(os.path.join(os.getcwd(), "..", "data", "simulations", "wakes", str(wake_id), "wakes_df.parquet"))
     
     click.echo("Loading wakes...")
     wakes_df = pd.read_parquet(fpath_wakes)
@@ -159,15 +161,15 @@ def main(
     
     click.echo("Generating random encounter...")
     t_range = wakes_df.index.max()
-    # v = np.random.randint(60, 300)  
-    # t_target = np.random.randint(1,t_range)
-    # theta = np.random.randint(-180, 180)
-    # phi = np.random.randint(-10,10)
+    v = np.random.randint(60, 300)  
+    t_target = np.random.randint(1,t_range)
+    theta = np.random.randint(-180, 180)
+    phi = np.random.randint(-10,10)
     
-    v = 250
-    t_target = 22
-    theta = 101
-    phi = 3
+    # v = 250
+    # t_target = 22
+    # theta = 101
+    # phi = 3
     
     print(f"Speed: {v:.2f} m/s.")
     print(f"Target time: {t_target:.2f} s.")
@@ -179,6 +181,7 @@ def main(
     x_target, y_target, z_target = wakes_df.x.iloc[0], np.random.uniform(data_wakes.y.min(), data_wakes.y.max()), np.random.uniform(data_wakes.z.min(), data_wakes.z.max())
     
     params = {
+    "Wake simulation ID": [wake_id],
     "aircraft_type": [aircraft_type],
     "crop_distance": [crop_distance],
     "speed": [v],                
@@ -189,9 +192,8 @@ def main(
     "y_target": [y_target],           
     "z_target": [z_target],                          
     }
-    # encounter_name = f"encounter_ID_{run_id}_{theta}lat_{phi}vert_{v}speed_{t_target}s.parquet"
     encounter_name = f"encounter_df.parquet"
-    save_path = os.path.join(os.getcwd(), os.pardir, "data", "simulations", str(run_id), "encounter")
+    save_path = os.path.join(os.getcwd(), os.pardir, "data", "simulations", "encounters", str(run_id))
     os.makedirs(os.path.dirname(os.path.join(save_path, "param.parquet")), exist_ok=True)
     pd.DataFrame(params).to_parquet(os.path.join(save_path, "param.parquet"))
     

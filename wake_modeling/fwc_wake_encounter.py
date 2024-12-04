@@ -27,19 +27,21 @@ rho = 1.225 #air density
 @click.command()
 @click.argument("run_id", type=int) # simulation id
 
+@click.option('--wake_id', default=0, type=int) #Wake scenario to be used
 @click.option('--v_field', default=True, type=bool) # calculation of a new velocity field
 @click.option('--typecode', default="A320", type=str) # typecode of trailer aircraft
 
 def main(
     run_id: int,
+    wake_id:int,
     v_field: bool,
     typecode: str,
 ):
     
     #Data path
-    wake_path = os.path.join(os.getcwd(), os.pardir, "data", "simulations", str(run_id), "wakes", "wakes_df.parquet")
-    traj_path = os.path.join(os.getcwd(), os.pardir, "data", "simulations", str(run_id), "encounter", "encounter_df.parquet")
-    v_field_path = os.path.join(os.getcwd(), os.pardir, "data", "simulations", str(run_id), "velocity_field")
+    wake_path = os.path.join(os.getcwd(), os.pardir, "data", "simulations", "wakes", str(wake_id), "wakes_df.parquet")
+    traj_path = os.path.join(os.getcwd(), os.pardir, "data", "simulations", "encounters", str(run_id), "encounter_df.parquet")
+    v_field_path = os.path.join(os.getcwd(), os.pardir, "data", "simulations", "encounters", str(run_id), "velocity_field")
     aircraft_db_path = os.path.join(os.getcwd(), os.pardir, "data", "aircraft_database", "aircraft_db.parquet")
     
     aircraft_db = pd.read_parquet(aircraft_db_path)
@@ -54,8 +56,8 @@ def main(
     ### MODIFY TO GO TO RIGHT LOCATION ###
     # Define basic case parameters
     case_name = typecode + "_" + str(run_id)
-    case_route = os.path.join("../data/simulations", str(run_id))
-    output_route =  os.path.join("../data/simulations", str(run_id))
+    case_route = os.path.join("../data/simulations/encounters", str(run_id))
+    output_route =  os.path.join("../data/simulations/encounters", str(run_id))
     post_route = os.path.join(output_route, case_name, "savedata", case_name + '.data.h5')
 
     # velocity field
