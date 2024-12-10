@@ -54,9 +54,9 @@ def calcGrid(encounter: np.array):
     R = np.einsum('ijk,ikl->ijl', R_z, R_y)
     
     # Define the grid ranges and step size
-    x = np.arange(-100, 5, 5)  # x from -100 to 0 with step 5
-    y = np.arange(-40, 45, 5)  # y from -20 to 20 with step 5
-    z = np.arange(-20, 25, 5)  # z from -10 to 10 with step 5
+    x = np.linspace(-100, 0, 21)  # x from -100 to 0 with step 5
+    y = np.linspace(-50, 50, 21)  # y from -20 to 20 with step 5
+    z = np.linspace(-50, 50, 21)  # z from -10 to 10 with step 5
         
     t_dim = np.shape(encounter)[0]-1
     x_dim = len(x)
@@ -192,8 +192,8 @@ def create_xdmf(U, V, W, save_path):
     
     # Parameters
     dx, dy, dz = 5, 5, 5  # Spatial grid step sizes
-    x_range, y_range, z_range = 100, 80, 40  # Spatial ranges
-    x_origin, y_origin, z_origin = 0, -40, -20  # Spatial coordinate origin
+    x_range, y_range, z_range = 100, 100, 100  # Spatial ranges
+    x_origin, y_origin, z_origin = 0, -50, -50  # Spatial coordinate origin
     nx, ny, nz = int(x_range/dx+1), int(y_range/dy+1), int(z_range/dz+1)  # Number of spatial grid points
     
     # Time parameters
@@ -279,12 +279,19 @@ def main(wake_path, trajectory_path, save_path, flag):
    # rearranged wake so that it looks like this
    # t,x,y_l,z_l,gamma_l,y_r,z_r,gamma_r
    
-   time = len(encounter)-4
+   time = len(encounter)-2
    grid,R,V_inf = calcGrid(encounter)
    
    if flag:
        U,V,W = vortxl(wake,grid,R)
+       
+       U = np.concatenate([np.zeros_like(V[:,:,:,0])[..., np.newaxis], U], axis=3)
        U = U + V_inf
+       
+       V = np.concatenate([np.zeros_like(V[:,:,:,0])[..., np.newaxis], V], axis=3)
+
+       W = np.concatenate([np.zeros_like(W[:,:,:,0])[..., np.newaxis], W], axis=3)
+
        create_xdmf(U, V, W, save_path)
    
    return V_inf,time
