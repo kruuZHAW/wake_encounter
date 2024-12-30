@@ -139,6 +139,7 @@ def generate_encounter(v: float, # m/s, velocity of the aircraft
 
 
 @click.command()
+@click.argument("out_path", type=str) # simulation id
 @click.argument("run_id", type=int) # simulation id
 
 @click.option('--wake_id', default=0, type=int) #Wake scenario to be used
@@ -146,12 +147,14 @@ def generate_encounter(v: float, # m/s, velocity of the aircraft
 @click.option('--crop_distance', default=2000, type=float) # distance from the closest wake from which we crop the trailer trajectory in m
 
 def main(
+    out_path:str,
     run_id:int,
     wake_id:int,
     aircraft_type:str,
     crop_distance:int,
 ):
-    fpath_wakes = os.path.abspath(os.path.join(os.getcwd(), "..", "data", "simulations", "wakes", str(wake_id), "wakes_df.parquet"))
+    # fpath_wakes = os.path.abspath(os.path.join(os.getcwd(), "..", "data", "simulations", "wakes", str(wake_id), "wakes_df.parquet"))
+    fpath_wakes = os.path.abspath(os.path.join(out_path, "wakes", str(wake_id), "wakes_df.parquet"))
     
     click.echo("Loading wakes...")
     wakes_df = pd.read_parquet(fpath_wakes)
@@ -167,9 +170,9 @@ def main(
     phi = np.random.randint(-10,10)
     
     # v = 250
-    # t_target = 22
-    # theta = 101
-    # phi = 3
+    # t_target = 20
+    # theta = 90
+    # phi = 0
     
     print(f"Speed: {v:.2f} m/s.")
     print(f"Target time: {t_target:.2f} s.")
@@ -193,7 +196,8 @@ def main(
     "z_target": [z_target],                          
     }
     encounter_name = f"encounter_df.parquet"
-    save_path = os.path.join(os.getcwd(), os.pardir, "data", "simulations", "encounters", str(run_id))
+    # save_path = os.path.join(os.getcwd(), os.pardir, "data", "simulations", "encounters", str(run_id))
+    save_path = os.path.join(out_path, "encounters", str(run_id))
     os.makedirs(os.path.dirname(os.path.join(save_path, "param.parquet")), exist_ok=True)
     pd.DataFrame(params).to_parquet(os.path.join(save_path, "param.parquet"))
     

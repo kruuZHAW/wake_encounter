@@ -54,9 +54,9 @@ def calcGrid(encounter: np.array):
     R = np.einsum('ijk,ikl->ijl', R_z, R_y)
     
     # Define the grid ranges and step size
-    x = np.arange(-100, 5, 5)  # x from -100 to 0 with step 5
-    y = np.arange(-40, 45, 5)  # y from -20 to 20 with step 5
-    z = np.arange(-20, 25, 5)  # z from -10 to 10 with step 5
+    x = np.arange(-100, 5, 5)  
+    y = np.arange(-50, 55, 5)  
+    z = np.arange(-50, 55, 5)  
         
     t_dim = np.shape(encounter)[0]-1
     x_dim = len(x)

@@ -25,7 +25,7 @@ def define_simulation_settings(flow, model, alpha_deg, u_inf,
     structural_relaxation_factor = kwargs.get('structural_relaxation_factor', 0.6)
     tolerance = kwargs.get('tolerance', 1e-6)
     fsi_tolerance = kwargs.get('fsi_tolerance', 1e-6)
-    num_cores = kwargs.get('num_cores',2)
+    num_cores = kwargs.get('num_cores',20)
 
     if not lifting_only:
         nonlifting_body_interactions = True
@@ -141,7 +141,7 @@ def define_simulation_settings(flow, model, alpha_deg, u_inf,
                                     'structural_solver_settings': settings[dynamic_structural_solver],
                                     'aero_solver': 'StepUvlm',
                                     'aero_solver_settings': settings['StepUvlm'],
-                                    'fsi_substeps': kwargs.get('fsi_substeps', 200),
+                                    'fsi_substeps': kwargs.get('fsi_substeps', 20),
                                     'fsi_tolerance': fsi_tolerance,
                                     'relaxation_factor': kwargs.get('relaxation_factor',0.1),
                                     'minimum_steps': 1,

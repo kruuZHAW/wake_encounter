@@ -25,6 +25,7 @@ rho = 1.225 #air density
 # python fwc_wake_encounter.py 1 
 
 @click.command()
+@click.argument("out_path", type=str) 
 @click.argument("run_id", type=int) # simulation id
 
 @click.option('--wake_id', default=0, type=int) #Wake scenario to be used
@@ -32,6 +33,7 @@ rho = 1.225 #air density
 @click.option('--typecode', default="A320", type=str) # typecode of trailer aircraft
 
 def main(
+    out_path: str,
     run_id: int,
     wake_id:int,
     v_field: bool,
@@ -39,9 +41,9 @@ def main(
 ):
     
     #Data path
-    wake_path = os.path.join(os.getcwd(), os.pardir, "data", "simulations", "wakes", str(wake_id), "wakes_df.parquet")
-    traj_path = os.path.join(os.getcwd(), os.pardir, "data", "simulations", "encounters", str(run_id), "encounter_df.parquet")
-    v_field_path = os.path.join(os.getcwd(), os.pardir, "data", "simulations", "encounters", str(run_id), "velocity_field")
+    wake_path = os.path.join(out_path, "wakes", str(wake_id), "wakes_df.parquet")
+    traj_path = os.path.join(out_path, "encounters", str(run_id), "encounter_df.parquet")
+    v_field_path = os.path.join(out_path, "encounters", str(run_id), "velocity_field")
     aircraft_db_path = os.path.join(os.getcwd(), os.pardir, "data", "aircraft_database", "aircraft_db.parquet")
     
     aircraft_db = pd.read_parquet(aircraft_db_path)
@@ -56,8 +58,8 @@ def main(
     ### MODIFY TO GO TO RIGHT LOCATION ###
     # Define basic case parameters
     case_name = typecode + "_" + str(run_id)
-    case_route = os.path.join("../data/simulations/encounters", str(run_id))
-    output_route =  os.path.join("../data/simulations/encounters", str(run_id))
+    case_route = os.path.join(out_path, "encounters", str(run_id))
+    output_route =  os.path.join(out_path, "encounters", str(run_id))
     post_route = os.path.join(output_route, case_name, "savedata", case_name + '.data.h5')
 
     # velocity field
@@ -122,7 +124,7 @@ def main(
 
     results = fuselage_wing_config.calculate_aero_coefficients(post_route, V_inf, rho, s_ref, c_ref)
     results = pd.DataFrame(results)
-    results.to_parquet(os.path.join(output_route, case_name + "_results.parquet"))
+    results.to_parquet(os.path.join(output_route, "results.parquet"))
 
     fuselage_wing_config.clean()
 
