@@ -25,7 +25,7 @@ def define_simulation_settings(flow, model, alpha_deg, u_inf,
     structural_relaxation_factor = kwargs.get('structural_relaxation_factor', 0.6)
     tolerance = kwargs.get('tolerance', 1e-6)
     fsi_tolerance = kwargs.get('fsi_tolerance', 1e-6)
-    num_cores = kwargs.get('num_cores',20)
+    num_cores = kwargs.get('num_cores',4)
 
     if not lifting_only:
         nonlifting_body_interactions = True
@@ -119,23 +119,26 @@ def define_simulation_settings(flow, model, alpha_deg, u_inf,
                                             'num_steps': kwargs.get('n_tsteps',10),
                                             'dt': dt,
                                             }
-    settings['StepUvlm'] = {'print_info': True,
-                                'num_cores': 4,
+       settings['StepUvlm'] = {'print_info': True,
+                                'num_cores': num_cores,
                                 'convection_scheme': 3,
                                 'velocity_field_generator': 'TurbVelocityField',
                                 'velocity_field_input': {'turbulent_field': velocity_field_route,
                                                          'frozen': False,
                                                          'centre_y': False,
-                                                         'offset': np.array([0, 20, 60])
+                                                         'offset': np.array([0, 0, 100]),
+                                                         'store_field': False,
+                                                         'periodicity': 'x'
                                                          },
                                 'rho': rho,
                                 'n_time_steps': kwargs.get('n_tsteps',10),
                                 'dt': dt,
+                                'cfl1': False,
                                 'phantom_wing_test': phantom_test,
                                 'nonlifting_body_interactions': not lifting_only,
                                 'gamma_dot_filtering': 3,                                
                                 'ignore_first_x_nodes_in_force_calculation': kwargs.get('ignore_first_x_nodes_in_force_calculation', 0),}
-    
+
     dynamic_structural_solver = kwargs.get('structural_solver','NonLinearDynamicPrescribedStep')
     settings['DynamicCoupled'] = {'structural_solver': dynamic_structural_solver,
                                     'structural_solver_settings': settings[dynamic_structural_solver],

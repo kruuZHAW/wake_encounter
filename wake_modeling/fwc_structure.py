@@ -28,6 +28,9 @@ class FWC_Structure:
         self.vertical_htail_position    = kwargs.get('vertical_htail_position',2.)
         self.vtail_offset               = kwargs.get('vtail_offset', self.fuselage_length-self.offset_nose_wing_beam)
         self.vertical_vtail_position    = kwargs.get('vertical_vtail_position', 0.)
+        self.root_chord_wing            = kwargs.get('root_chord_wing', 5.)
+        
+        self.global_offset = 0.25*self.root_chord_wing
         
         self.n_elem_per_wing    = kwargs.get('n_elem_per_wing', 10)
         self.n_elem_fuselage    = kwargs.get('n_elem_fuselage', 10)
@@ -162,7 +165,7 @@ class FWC_Structure:
             such as reference node and free tips, stiffness and mass property ID for each element,
             and twist.
         """
-        self.x[:self.n_node_right_wing] = np.linspace(0, self.half_wingspan*np.tan(self.sweep_wing), self.n_node_right_wing) 
+        self.x[:self.n_node_right_wing] = np.linspace(0, self.half_wingspan*np.tan(self.sweep_wing), self.n_node_right_wing) + self.global_offset
         self.y[:self.n_node_right_wing] = np.linspace(0, self.half_wingspan, self.n_node_right_wing)
         self.z[:self.n_node_right_wing] += np.linspace(0, self.half_wingspan*np.tan(self.dihed_wing), self.n_node_right_wing)
         for ielem in range(self.n_elem_per_wing):
@@ -263,7 +266,7 @@ class FWC_Structure:
            and twist.
        """
        # the first line is added, however there is no sweep/dihedral yet
-       self.x[(self.n_node_fuselage_wing - 1):(self.n_node_fuselage_wing  + self.n_node_right_htail)] = self.htail_offset + np.linspace(0, self.half_htailspan*np.tan(self.sweep_htail), (self.n_node_right_htail + 1))
+       self.x[(self.n_node_fuselage_wing - 1):(self.n_node_fuselage_wing  + self.n_node_right_htail)] = self.htail_offset + np.linspace(0, self.half_htailspan*np.tan(self.sweep_htail), (self.n_node_right_htail + 1)) + self.global_offset
        self.y[(self.n_node_fuselage_wing - 1):(self.n_node_fuselage_wing  + self.n_node_right_htail)] = np.linspace(0, self.half_htailspan, (self.n_node_right_htail + 1))
        self.z[(self.n_node_fuselage_wing - 1):(self.n_node_fuselage_wing  + self.n_node_right_htail)] += (-self.vertical_wing_position + self.vertical_htail_position) + np.linspace(0, self.half_htailspan*np.tan(self.dihed_htail), (self.n_node_right_htail + 1))
        for ielem in range(self.n_elem_fuselage_wing, self.n_elem_fuselage_wing + self.n_elem_per_htail):
@@ -302,7 +305,7 @@ class FWC_Structure:
        # the first line is added, however there is no sweep/dihedral yet
        self.y[self.n_node_fuselage_wing_htail:self.n_node] = 0
        self.z[self.n_node_fuselage_wing_htail:self.n_node] = (-self.vertical_wing_position + self.vertical_vtail_position + self.vertical_htail_position) + np.linspace(self.vtailspan/self.n_node_vtail, self.vtailspan, (self.n_node_vtail))
-       self.x[self.n_node_fuselage_wing_htail:self.n_node] = self.vtail_offset + np.linspace(self.z[self.n_node_fuselage_wing_htail]*np.tan(self.sweep_vtail),self.vtailspan*np.tan(self.sweep_vtail),self.n_node_vtail)
+       self.x[self.n_node_fuselage_wing_htail:self.n_node] = self.vtail_offset + np.linspace(self.z[self.n_node_fuselage_wing_htail]*np.tan(self.sweep_vtail),self.vtailspan*np.tan(self.sweep_vtail),self.n_node_vtail) + self.global_offset
 
        for ielem in range(self.n_elem_fuselage_wing_htail, self.n_elem):
            self.conn[ielem, :] = ((np.ones((3, )) * (ielem-self.n_elem_fuselage_wing_htail) * (self.n_node_elem - 1)) +
