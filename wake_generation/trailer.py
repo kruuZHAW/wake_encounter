@@ -164,9 +164,9 @@ def main(
     
     click.echo("Generating random encounter...")
     t_range = wakes_df.index.max()
-    v = np.random.randint(60, 300)  
+    v = np.random.randint(60, 180) #in m/s: Operating speeds of an A320  
     t_target = np.random.randint(1,t_range)
-    theta = np.random.randint(-180, 180)
+    theta = np.random.randint(-90, 90)
     phi = np.random.randint(-10,10)
     
     # v = 250
@@ -184,7 +184,7 @@ def main(
     x_target, y_target, z_target = wakes_df.x.iloc[0], np.random.uniform(data_wakes.y.min(), data_wakes.y.max()), np.random.uniform(data_wakes.z.min(), data_wakes.z.max())
     
     params = {
-    "Wake simulation ID": [wake_id],
+    "wake_id": [wake_id],
     "aircraft_type": [aircraft_type],
     "crop_distance": [crop_distance],
     "speed": [v],                
@@ -227,6 +227,7 @@ def main(
     
     #Crop when the distance to the wake is less than 1000m for left wake or right wake
     encounter = encounter.query(f"(dist_right_wake <= {crop_distance}) | (dist_left_wake <= {crop_distance})")
+    params["time_range"] = [encounter.index[0], encounter.index[-1]]
 
     encounter.to_parquet(os.path.abspath(os.path.join(save_path, encounter_name)))
     

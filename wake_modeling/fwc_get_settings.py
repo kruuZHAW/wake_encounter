@@ -119,7 +119,7 @@ def define_simulation_settings(flow, model, alpha_deg, u_inf,
                                             'num_steps': kwargs.get('n_tsteps',10),
                                             'dt': dt,
                                             }
-       settings['StepUvlm'] = {'print_info': True,
+    settings['StepUvlm'] = {'print_info': True,
                                 'num_cores': num_cores,
                                 'convection_scheme': 3,
                                 'velocity_field_generator': 'TurbVelocityField',
