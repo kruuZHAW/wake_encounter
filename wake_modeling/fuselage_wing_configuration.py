@@ -119,6 +119,12 @@ class Fuselage_Wing_Configuration:
     
         # Pack results in a dictionary
         coeffs = {
+            "Drag": loads[:,0],
+            "Side": loads[:,1],
+            "Lift": loads[:,2],
+            "Rolling": loads[:,3],
+            "Pitching": loads[:,4],
+            "Yawing": loads[:,5],
             'C_L': C_L,
             'C_D': C_D,
             'C_Y': C_Y,

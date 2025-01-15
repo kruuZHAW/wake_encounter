@@ -63,7 +63,6 @@ def main(
     post_route = os.path.join(output_route, case_name, "savedata", case_name + '.data.h5')
 
     # velocity field
-    ### TODO: MODIFY IT SO THAT IF THE PATH EXISTS; IT USES THIS VELOCITY FIELD ###
     if v_field:
         if os.path.exists(v_field_path):
             shutil.rmtree(v_field_path)
@@ -129,7 +128,7 @@ def main(
     fuselage_wing_config.clean()
 
     #Delete simulation files
-    shutil.rmtree(os.path.join(output_route, case_name))
+    # shutil.rmtree(os.path.join(output_route, case_name))
 
 if __name__ == "__main__":
     main()

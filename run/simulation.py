@@ -11,14 +11,23 @@ generator_path = "/home/kruu/git_folder/wake_encounter/wake_generation/generator
 encounter_path = "/home/kruu/git_folder/wake_encounter/wake_generation/trailer.py"
 fwc_path = "/home/kruu/git_folder/wake_encounter/wake_modeling/fwc_wake_encounter.py"
 # output_path = "/home/kruu/git_folder/wake_encounter/data/simulations"
-output_path = "/backup/kruu/wake_encounter_simulations"
+# output_path = "/backup/kruu/wake_encounter_simulations"
+output_path = "/backup/kruu/wake_encounter_test"
 
 
 parser = argparse.ArgumentParser()
+parser.add_argument("--n_sim", type=int, default=None, help="Number of simulations")
 parser.add_argument("--max-workers", type=int, default=None, help="Number of workers for multiprocessing")
 args = parser.parse_args()
 
 max_workers = args.max_workers
+
+#Create directories:
+if not os.path.exists(os.path.join(output_path, "wakes")):
+    os.makedirs(os.path.join(output_path, "wakes"))
+if not os.path.exists(os.path.join(output_path, "encounters")):
+    os.makedirs(os.path.join(output_path, "encounters"))
+
 
 # Generate wakes if not already done
 id_run_wake = 0
@@ -45,7 +54,7 @@ def process_simulation(id_run):
     
 # Multiprocessing to run simulations in parallel
 if __name__ == "__main__":
-    start_id = 132
+    start_id = 0
     end_id = 1000
 
     with ProcessPoolExecutor(max_workers=max_workers) as executor:
