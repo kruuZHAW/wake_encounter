@@ -55,7 +55,7 @@ def process_simulation(id_run):
 # Multiprocessing to run simulations in parallel
 if __name__ == "__main__":
     start_id = 0
-    end_id = 1000
+    end_id = n_sim
 
     with ProcessPoolExecutor(max_workers=max_workers) as executor:
         executor.map(process_simulation, range(start_id, end_id))
