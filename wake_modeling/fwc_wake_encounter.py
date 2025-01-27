@@ -110,8 +110,8 @@ def main(
         alpha_deg=2.0,  # Angle of attack
         u_inf=V_inf,  # Freestream velocitys
         lifting_only=True,  # Include fuselage
-        dt=1,  # Time step for dynamic simulations (if applicable)
-        n_tsteps=int(time/1), # division by dt
+        dt=0.1,  # Time step for dynamic simulations (if applicable)
+        n_tsteps=int(time/dt), # division by dt
         n_step=15,  # Number of load steps for static coupled simulations
         velocity_field_route = os.path.join(v_field_path, "velocity_field.xdmf")
     )
