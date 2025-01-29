@@ -12,7 +12,7 @@ encounter_path = "/home/kruu/git_folder/wake_encounter/wake_generation/trailer.p
 fwc_path = "/home/kruu/git_folder/wake_encounter/wake_modeling/fwc_wake_encounter.py"
 # output_path = "/home/kruu/git_folder/wake_encounter/data/simulations"
 # output_path = "/backup/kruu/wake_encounter_simulations"
-output_path = "/backup/kruu/wake_encounter_test"
+output_path = "/backup/kruu/wake_encounter_test_speed"
 
 
 parser = argparse.ArgumentParser()
