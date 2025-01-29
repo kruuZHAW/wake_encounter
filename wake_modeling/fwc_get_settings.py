@@ -108,7 +108,6 @@ def define_simulation_settings(flow, model, alpha_deg, u_inf,
     settings['AerogridPlot'] = {'plot_nonlifting_surfaces': nonlifting_body_interactions}
     settings['BeamPlot'] = {}
     settings['SaveData'] = {}
-    settings['NoStructural'] = {}
     settings['NonLinearDynamicPrescribedStep'] = {'print_info': True,
                                             'max_iterations': 950,
                                             'delta_curved': 1e-1,
@@ -119,6 +118,17 @@ def define_simulation_settings(flow, model, alpha_deg, u_inf,
                                             'num_steps': kwargs.get('n_tsteps',10),
                                             'dt': dt,
                                             }
+    settings['RigidDynamicPrescribedStep'] = {'print_info': True,
+                                            'max_iterations': 950,
+                                            'delta_curved': 1e-1,
+                                            'min_delta': 1e-6,
+                                            'newmark_damp': 1e1,
+                                            'gravity_on': gravity,
+                                            'gravity': 9.81,
+                                            'num_steps': kwargs.get('n_tsteps',10),
+                                            'dt': dt,
+                                            }
+                                 
     settings['StepUvlm'] = {'print_info': True,
                                 'num_cores': num_cores,
                                 'convection_scheme': 3,
@@ -139,11 +149,13 @@ def define_simulation_settings(flow, model, alpha_deg, u_inf,
                                 'gamma_dot_filtering': 3,                                
                                 'ignore_first_x_nodes_in_force_calculation': kwargs.get('ignore_first_x_nodes_in_force_calculation', 0),}
 
-    dynamic_structural_solver = kwargs.get('structural_solver','NonLinearDynamicPrescribedStep')
+    dynamic_structural_solver = kwargs.get('structural_solver','RigidDynamicPrescribedStep')
+    dynamic_aero_solver = kwargs.get('aero_solver', 'StepUvlm')
+                                 
     settings['DynamicCoupled'] = {'structural_solver': dynamic_structural_solver,
                                     'structural_solver_settings': settings[dynamic_structural_solver],
                                     'aero_solver': 'StepUvlm',
-                                    'aero_solver_settings': settings['StepUvlm'],
+                                    'aero_solver_settings': settings[dynamic_aero_solver],
                                     'fsi_substeps': kwargs.get('fsi_substeps', 20),
                                     'fsi_tolerance': fsi_tolerance,
                                     'relaxation_factor': kwargs.get('relaxation_factor',0.1),
@@ -159,6 +171,19 @@ def define_simulation_settings(flow, model, alpha_deg, u_inf,
                                                                 'BeamLoads': {'csv_output': False},
                                                                 },
                                 }
-
+    settings['DynamicUVLM'] = {'print_info': True,
+                                'structural_solver': dynamic_structural_solver,
+                                'structural_solver_settings': settings[dynamic_structural_solver],
+                                'aero_solver': dynamic_aero_solver,
+                                'aero_solver_settings': settings[dynamic_aero_solver],
+                                'n_time_steps': kwargs.get('n_tsteps',10),
+                                'dt': dt,
+                                'include_unsteady_force_contribution': False,
+                                'postprocessors': ['BeamLoads',
+                                                       ],
+                                'postprocessors_settings': {
+                                                                'BeamLoads': {'csv_output': False},
+                                                                },
+                                }
 
     return settings
