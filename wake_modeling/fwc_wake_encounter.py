@@ -102,7 +102,7 @@ def main(
     fuselage_wing_config.generate()
 
     # Define the flow sequence for SHARPy and the simulation settings
-    flow_sequence = ['BeamLoader', 'AerogridLoader', 'StaticCoupled', 'DynamicCoupled', 'AerogridPlot', 'BeamPlot', 'AeroForcesCalculator', 'SaveData']
+    flow_sequence = ['BeamLoader', 'AerogridLoader', 'StaticCoupled', 'DynamicUVLM', 'AerogridPlot', 'BeamPlot', 'AeroForcesCalculator', 'SaveData']
 
     settings = define_simulation_settings(
         flow=flow_sequence,
