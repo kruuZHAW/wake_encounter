@@ -182,7 +182,7 @@ def main(
     
     # Target coordinates
     # x_target, y_target, z_target = wakes_df.x.iloc[0], np.random.uniform(data_wakes.y.min(), data_wakes.y.max()), np.random.uniform(data_wakes.z.min(), data_wakes.z.max())
-    x_target, y_target, z_target = wakes_df.x.iloc[0], -200, 1900
+    x_target, y_target, z_target = wakes_df.x.iloc[0], -62, 1973
     
     params = {
     "wake_id": [wake_id],

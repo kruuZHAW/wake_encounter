@@ -55,7 +55,6 @@ def main(
     s_ref=row.wing_span*row.wing_mac
     c_ref=row.wing_mac
     
-    ### MODIFY TO GO TO RIGHT LOCATION ###
     # Define basic case parameters
     case_name = typecode + "_" + str(run_id)
     case_route = os.path.join(out_path, "encounters", str(run_id))

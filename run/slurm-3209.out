@@ -1,7 +1,0 @@
-SCRIPT_PATH: /home/kruu/git_folder/wake_encounter/run/run_sim.sh
-APP_ROOT: /home/kruu/git_folder/wake_encounter
-Sourcing /cm/shared/apps/Miniforge3/etc/profile.d/conda.sh
-Sourcing /cm/shared/apps/Miniforge3/etc/profile.d/mamba.sh
-I am running on srv-lab-t-260
-I am running with job id 3209
-slurmstepd: error: *** JOB 3209 ON srv-lab-t-260 CANCELLED AT 2025-01-27T13:23:35 ***
