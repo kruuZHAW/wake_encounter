@@ -121,7 +121,8 @@ def main(
 
     fuselage_wing_config.run()
 
-    results = fuselage_wing_config.calculate_aero_coefficients(post_route, V_inf, rho, s_ref, c_ref)
+    #results = fuselage_wing_config.calculate_aero_coefficients(post_route, V_inf, rho, s_ref, c_ref)
+    results = fuselage_wing_config.calculate_aero_coefficients_v2(post_route, V_inf, rho, b_ref=row.wing_span, c_ref=row.wing_mac, b_tail=row.htail_span, vtail_offset=row.tail_position_z-row.wing_position_z, b_vtail=row.vtail_span)
     results = pd.DataFrame(results)
     results.to_parquet(os.path.join(output_route, "results.parquet"))
 
