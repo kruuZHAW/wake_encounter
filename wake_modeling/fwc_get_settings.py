@@ -10,7 +10,7 @@ def define_simulation_settings(flow, model, alpha_deg, u_inf,
                                horseshoe=False, **kwargs):
     gravity = kwargs.get('gravity',False)
     nonlifting_body_interactions = not lifting_only and not nonlifting_only
-    wake_length = kwargs.get('wake_length', 10)
+    wake_length = kwargs.get('wake_length', 1)
     velocity_field_route = kwargs.get('velocity_field_route',)
     if not velocity_field_route:
         raise ValueError("Velocity field route has to be specified")
