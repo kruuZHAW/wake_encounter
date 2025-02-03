@@ -131,7 +131,7 @@ def define_simulation_settings(flow, model, alpha_deg, u_inf,
                                  
     settings['StepUvlm'] = {'print_info': True,
                                 'num_cores': num_cores,
-                                'convection_scheme': 3,
+                                'convection_scheme': 0,
                                 'velocity_field_generator': 'TurbVelocityField',
                                 'velocity_field_input': {'turbulent_field': velocity_field_route,
                                                          'frozen': False,
