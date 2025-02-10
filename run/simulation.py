@@ -10,9 +10,8 @@ warnings.filterwarnings("ignore")
 generator_path = "/home/kruu/git_folder/wake_encounter/wake_generation/generator.py"
 encounter_path = "/home/kruu/git_folder/wake_encounter/wake_generation/trailer.py"
 fwc_path = "/home/kruu/git_folder/wake_encounter/wake_modeling/fwc_wake_encounter.py"
-# output_path = "/home/kruu/git_folder/wake_encounter/data/simulations"
-# output_path = "/backup/kruu/wake_encounter_simulations"
-output_path = "/backup/kruu/wake_encounter_test_speed"
+output_path = "/backup/kruu/wake_encounter_simulations/t20_far"
+# output_path = "/backup/kruu/wake_encounter_test_time"
 
 
 parser = argparse.ArgumentParser()
@@ -24,6 +23,8 @@ max_workers = args.max_workers
 n_sim = args.n_sim
 
 #Create directories:
+if not os.path.exists(output_path):
+    os.makedirs(output_path)
 if not os.path.exists(os.path.join(output_path, "wakes")):
     os.makedirs(os.path.join(output_path, "wakes"))
 if not os.path.exists(os.path.join(output_path, "encounters")):
