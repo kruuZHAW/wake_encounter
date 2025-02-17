@@ -143,9 +143,9 @@ def vortxl(wake: np.array, grid: np.array, R: np.array):
     c_p_r_norm[indZeros_c_p_r] = 1
     
     ## apply Biot-Savart Law for a finite vortex filament
-    K_l = (gamma_l[1:, np.newaxis, np.newaxis, np.newaxis] / (4 * np.pi * c_p_l_norm)) * \
+    K_l = (gamma_l[1:, np.newaxis, np.newaxis, np.newaxis] / (4 * np.pi * c_p_l_norm)**2) * \
           (dot_product_l1 / r1_l_norm - dot_product_l2 / r2_l_norm)
-    K_r = (gamma_r[1:, np.newaxis, np.newaxis, np.newaxis] / (4 * np.pi * c_p_r_norm)) * \
+    K_r = (gamma_r[1:, np.newaxis, np.newaxis, np.newaxis] / (4 * np.pi * c_p_r_norm)**2) * \
           (dot_product_r1 / r1_r_norm - dot_product_r2 / r2_r_norm)
     
     u = K_l * cross_product_l[..., 0] + K_r * cross_product_r[..., 0]
