@@ -167,13 +167,13 @@ def main(
     
     v = np.random.randint(60, 180) #in m/s: Operating speeds of an A320  
     # t_target = np.random.randint(1,t_range)
-    theta = np.random.randint(-90, 90)
-    phi = np.random.randint(-10,10)
+    # theta = np.random.randint(-90, 90)
+    # phi = np.random.randint(-10,10)
     
-    # v = 80
+    v = 80
     t_target = 20
-    # theta = 45
-    # phi = 0
+    theta = 20
+    phi = 0
     
     print(f"Speed: {v:.2f} m/s.")
     print(f"Target time: {t_target:.2f} s.")
@@ -184,8 +184,9 @@ def main(
     # Target coordinates
     # x_target, y_target, z_target = wakes_df.x.iloc[0], np.random.uniform(data_wakes.y.min(), data_wakes.y.max()), np.random.uniform(data_wakes.z.min(), data_wakes.z.max())
     # x_target, y_target, z_target = wakes_df.x.iloc[0], -62, 1973 #close distance for t20
-    x_target, y_target, z_target = wakes_df.x.iloc[0], -200, 1930 #medium distance for t20
-    x_target, y_target, z_target = wakes_df.x.iloc[0], -500, 1900 #far distance for t20
+    # x_target, y_target, z_target = wakes_df.x.iloc[0], -200, 1930 #medium distance for t20
+    # x_target, y_target, z_target = wakes_df.x.iloc[0], -500, 1900 #far distance for t20
+    x_target, y_target, z_target = wakes_df.x.iloc[0], np.random.uniform(-300, 100), np.random.uniform(1900, 2100)
     
     
     params = {
