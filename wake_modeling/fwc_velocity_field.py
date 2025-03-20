@@ -118,8 +118,8 @@ def vortxl(wake: np.array, grid: np.array, R: np.array):
     r2_r_norm = np.linalg.norm(r2_r, axis=-1)
     
     # calculate wake trajectory
-    r0_l = r2_l - r1_l
-    r0_r = r2_r - r1_r
+    r0_l = np.array([100, 0, 0])
+    r0_r = np.array([100, 0, 0])
     
     # dot product 
     dot_product_l1 = np.einsum('...i,...i->...', r0_l, r1_l)
