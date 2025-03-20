@@ -50,13 +50,19 @@ def calcGrid(encounter: np.array):
     R_y[:, 2, 0] = sin_pitch
     R_y[:, 2, 2] = cos_pitch
 
+   # Construct the R_y rotation matrices (roll rotation around the x-axis to transform from NWU to NED coordinate system)
+    R_x = np.zeros((dir_t.shape[0], 3, 3))
+    R_x[:, 0, 0] = 1
+    R_x[:, 1, 1] = 1
+    R_x[:, 2, 2] = -1
+
     # Combine the R_z and R_y matrices by matrix multiplication
-    R = np.einsum('ijk,ikl->ijl', R_z, R_y)
+    R = np.einsum('tij,tjk,tkm->tim', R_x, R_y, R_z)
     
     # Define the grid ranges and step size
-    x = np.linspace(-100, 0, 21)  # x from -100 to 0 
-    y = np.linspace(-50, 50, 21)  # y from -20 to 20 
-    z = np.linspace(-50, 50, 21)  # z from -10 to 10 
+    x = np.linspace(0, 100, 21)  # x from -100 to 0 with step 5
+    y = np.linspace(-50, 50, 21)  # y from -20 to 20 with step 5
+    z = np.linspace(-50, 50, 21)  # z from -10 to 10 with step 5
         
     t_dim = np.shape(encounter)[0]-1
     x_dim = len(x)
@@ -66,17 +72,13 @@ def calcGrid(encounter: np.array):
     # Create a meshgrid of points
     X, Y, Z = np.meshgrid(x, y, z, indexing='ij')
 
-    # Flatten the grid points to (N, 3)
+    # Flatten the grid points to (N, 3) where N = x_dim * y_dim * z_dim
     grid_points = np.vstack([X.ravel(), Y.ravel(), Z.ravel()]).T  # Shape (N, 3)
-        
-    # Reshape grid_points to (1, N, 3) for broadcasting
-    grid_points_expanded = np.expand_dims(grid_points, axis=0)  # Shape (1, N, 3)
 
-    # Perform batch matrix multiplication
-    # Multiply each rotation matrix (num_rows, 3, 3) with grid points (1, N, 3)
-    rotated_grids = np.matmul(grid_points_expanded, R.transpose(0, 2, 1))  # Shape (1, N, 3) * (num_rows, 3, 3)
-    
-    # Add encounter coordinates to each timestep's grid points
+    # Multiply each rotation matrix (t, 3, 3) with grid points (N, 3)
+    rotated_grids = np.einsum('tij,nj->tni', R, grid_points)
+
+    # Add encounter coordinates to each timestep's grid points to make the grid follow the trajectory
     encounter_coords = encounter[1:, 1:4]  # Assuming encounter columns are time, x, y, z
     final_grids = rotated_grids + encounter_coords[:, np.newaxis, :]  # Broadcasting (t_dim, 1, 3) + (t_dim, N, 3)
     
@@ -143,23 +145,25 @@ def vortxl(wake: np.array, grid: np.array, R: np.array):
     c_p_r_norm[indZeros_c_p_r] = 1
     
     ## apply Biot-Savart Law for a finite vortex filament
-    K_l = (gamma_l[1:, np.newaxis, np.newaxis, np.newaxis] / (4 * np.pi * c_p_l_norm)**2) * \
+    K_l = (gamma_l[1:, np.newaxis, np.newaxis, np.newaxis] / (4 * np.pi * c_p_l_norm**2)) * \
           (dot_product_l1 / r1_l_norm - dot_product_l2 / r2_l_norm)
-    K_r = (gamma_r[1:, np.newaxis, np.newaxis, np.newaxis] / (4 * np.pi * c_p_r_norm)**2) * \
+    K_r = (gamma_r[1:, np.newaxis, np.newaxis, np.newaxis] / (4 * np.pi * c_p_r_norm**2)) * \
           (dot_product_r1 / r1_r_norm - dot_product_r2 / r2_r_norm)
     
     u = K_l * cross_product_l[..., 0] + K_r * cross_product_r[..., 0]
     v = K_l * cross_product_l[..., 1] + K_r * cross_product_r[..., 1]
     w = K_l * cross_product_l[..., 2] + K_r * cross_product_r[..., 2]
-      
-    V_ind = np.stack([u, v, w], axis=-1)
+
+    V_ind = np.stack([u, v, w], axis=-1) #
     
     # Reshape V_ind for efficient einsum operation
-    V_ind_reshaped = V_ind.reshape(t_dim, -1, 3)  # Shape: (time, x*y*z, u,v,w)
+    V_ind_reshaped = V_ind.reshape(t_dim, -1, 3).transpose(0,2,1)  # Shape: (time, x*y*z, u,v,w)
+    
+    # Compute the inverse of the rotation matrix R to transform the velocities back to the aircraft coordinate system
+    R_inv = R.transpose(0, 2, 1)
     
     # Perform the matrix-vector multiplication using einsum
-    V_ind_rotated = np.einsum('tij,tjk->tik', R, V_ind_reshaped.transpose(0, 2, 1))  # Shape: (t, u,v,w , x*y*z)
-    
+    V_ind_rotated = np.einsum('tij,tjn->tin', R_inv, V_ind_reshaped)  # Shape: (t, u,v,w , x*y*z)
     # Transpose back and reshape to original dimensions
     V_ind = V_ind_rotated.transpose(0, 2, 1).reshape(t_dim, x_dim, y_dim, z_dim, 3)  # Shape: (time, x, y, z, u,v,w)
     
