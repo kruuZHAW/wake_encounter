@@ -100,10 +100,10 @@ def vortxl(wake: np.array, grid: np.array, R: np.array):
     gamma_r = wake[:,7]
     
     # calculate r1 and r2 for both vortices
-    r1_l = r_v_l[:-1, np.newaxis, np.newaxis, np.newaxis, :] - grid[:, :, :, :, :]
-    r2_l = r_v_l[1:, np.newaxis, np.newaxis, np.newaxis, :] - grid[:, :, :, :, :]
-    r1_r = r_v_r[:-1, np.newaxis, np.newaxis, np.newaxis, :] - grid[:, :, :, :, :]
-    r2_r = r_v_r[1:, np.newaxis, np.newaxis, np.newaxis, :] - grid[:, :, :, :, :]
+    r1_l = r_v_l[1:, np.newaxis, np.newaxis, np.newaxis, :] - grid[:, :, :, :, :] - np.array([50, 0, 0])
+    r2_l = r1_l + np.array([200, 0, 0])
+    r1_r = r_v_r[1:, np.newaxis, np.newaxis, np.newaxis, :] - grid[:, :, :, :, :] - np.array([50, 0, 0])
+    r2_r = r1_r + np.array([200, 0, 0])
      
     ## calculate the vector cross product for each time step
     cross_product_l = np.cross(r1_l, r2_l, axis=-1)
@@ -118,8 +118,8 @@ def vortxl(wake: np.array, grid: np.array, R: np.array):
     r2_r_norm = np.linalg.norm(r2_r, axis=-1)
     
     # calculate wake trajectory
-    r0_l = np.array([100, 0, 0])
-    r0_r = np.array([100, 0, 0])
+    r0_l = r2_l - r1_l
+    r0_r = r2_r - r1_r
     
     # dot product 
     dot_product_l1 = np.einsum('...i,...i->...', r0_l, r1_l)
