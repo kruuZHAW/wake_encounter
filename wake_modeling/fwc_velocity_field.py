@@ -182,6 +182,10 @@ def vortxl(wake: np.array, grid: np.array, R: np.array):
     U = np.moveaxis(U, 0, -1)
     V = np.moveaxis(V, 0, -1)
     W = np.moveaxis(W, 0, -1)
+
+    U = np.transpose(U, (0, 2, 1, 3))
+    V = np.transpose(V, (0, 2, 1, 3))
+    W = np.transpose(W, (0, 2, 1, 3))
     
     return U,V,W
 
