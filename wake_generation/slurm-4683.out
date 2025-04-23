@@ -1,0 +1,37 @@
+SCRIPT_PATH: /home/kruu/git_folder/wake_encounter/wake_generation/run_slurm_test_p2p.sh
+APP_ROOT: /home/kruu/git_folder/wake_encounter
+Sourcing /cm/shared/apps/Miniforge3/etc/profile.d/conda.sh
+Sourcing /cm/shared/apps/Miniforge3/etc/profile.d/mamba.sh
+Sourcing /cm/shared/apps/Miniforge3/etc/profile.d/conda.sh
+Sourcing /cm/shared/apps/Miniforge3/etc/profile.d/mamba.sh
+I am running on srv-lab-t-262
+I am running with job id 4683
+/home/kruu/.conda/envs/wake_encounter/lib/python3.10/site-packages/pyarrow/pandas_compat.py:722: DeprecationWarning: DatetimeTZBlock is deprecated and will be removed in a future version. Use public APIs instead.
+  klass=_int.DatetimeTZBlock,
+Parent dir: /home/kruu/git_folder
+Root dir: /home/kruu/git_folder/P2P_base
+CWD: /home/kruu/git_folder/wake_encounter/wake_generation
+/home/kruu/git_folder/wake_encounter/data/test_wakes/inputs/1/fort.13
+
+Traceback (most recent call last):
+  File "/home/kruu/git_folder/wake_encounter/wake_generation/test_p2p.py", line 47, in <module>
+    main()
+  File "/home/kruu/git_folder/wake_encounter/wake_generation/test_p2p.py", line 39, in main
+    wakes = wake.Wake.generate(aircraft=flight,
+  File "/home/kruu/git_folder/P2P_base/wake/wake.py", line 278, in generate
+    df = generate_p2p_wake(
+  File "/home/kruu/git_folder/P2P_base/wake/wake.py", line 96, in generate_p2p_wake
+    raise Exception(
+Exception: P2P did not run successfully. Error:
+==2790816==WARNING: MemorySanitizer: use-of-uninitialized-value
+    #0 0x40bc27 in _GLOBAL__sub_I_fast_mem_ops.c fast_mem_ops.c
+    #1 0x689b7c in __libc_csu_init (/home/kruu/git_folder/P2P_base/p2p/P2P+0x689b7c) (BuildId: 42df37e03d087edecb6d3e426963eb41ddb19da9)
+    #2 0x7ffff74a1d17 in __libc_start_main (/lib64/libc.so.6+0x3ad17) (BuildId: c52dbe785ce4223dafe0b6ec0f6e25ea0c8e14f4)
+    #3 0x40bc9d in _start (/home/kruu/git_folder/P2P_base/p2p/P2P+0x40bc9d) (BuildId: 42df37e03d087edecb6d3e426963eb41ddb19da9)
+
+  Uninitialized value was created by an allocation of 'a.i.i' in the stack frame
+    #0 0x40b177 in _GLOBAL__sub_I_fast_mem_ops.c fast_mem_ops.c
+
+SUMMARY: MemorySanitizer: use-of-uninitialized-value fast_mem_ops.c in _GLOBAL__sub_I_fast_mem_ops.c
+Exiting
+

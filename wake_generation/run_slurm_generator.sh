@@ -37,10 +37,11 @@ echo "APP_ROOT: $APP_ROOT"
 
 # load relevant module
 module load mamba
+module load intel-oneapi
 
 # activate environment
 # Note: You can activate any env that is installed in your home directory
-source activate p2p
+source activate wake_encounter
 
 echo "I am running on $SLURM_JOB_NODELIST"
 echo "I am running with job id $SLURM_JOB_ID"
@@ -48,4 +49,4 @@ echo "I am running with job id $SLURM_JOB_ID"
 # run python script in the activated environment
 # -> make sure that the path matches your setup
 # python ${APP_ROOT}/P2P_encounters/generator.py ALT_AIRCRAFT=2000 SPREAD=500 STEP=10 WIND_VEL=10 WIND_DIR=229 TEMP=20 P_REF=102000 TKE=20 SPEED=200 MASS=80000 WINGSPAN=45
-python ${APP_ROOT}/P2P_encounters/generator.py 1 2000 1000 10 2 130 15 1013 10 100 136000 47.3 --gpa 0
+python /home/kruu/git_folder/wake_encounter/wake_generation/generator.py /store/kruu/wake_encounter_simulations/t20_phi0_speed80_close_dist_random_theta 0 2000 1000 10 2 130 15 1013 10 100 136000 47.3 --gpa 0

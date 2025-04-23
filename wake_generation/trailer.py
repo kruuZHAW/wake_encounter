@@ -1,11 +1,12 @@
 import os
 import sys
-#Give directory where the module P2P_base is.
-dir_p2p = os.path.abspath(os.path.join(os.getcwd(), os.pardir))
-if  dir_p2p not in sys.path:
-    sys.path.append(dir_p2p)
 
-from P2P_base.wake import wake, meteo, aircraft
+#Give directory where the module P2P_base is.
+parent_dir = os.path.abspath("/home/kruu/git_folder/")
+root_dir = os.path.join(parent_dir, "P2P_base")
+if parent_dir not in sys.path:
+    sys.path.append(root_dir)
+
 import utils.viz as viz
 
 import pandas as pd
@@ -16,22 +17,6 @@ import click
 
 import warnings
 warnings.simplefilter(action="ignore", category=FutureWarning)
-
-# def generate_wakes(fpath_aircraft: Path,
-#                    fpath_meteo: Path) -> wake:
-    
-#     meteo_data = meteo.Meteo.from_dat_file(fpath_meteo)
-#     aircraft_data = aircraft.Aircraft.from_dat_file(fpath_aircraft)
-#     edr_data = meteo.EDR.from_meteo(meteo_data)
-    
-#     wakes = wake.Wake.generate(aircraft=aircraft_data,
-#                             meteo=meteo_data,
-#                             edr=edr_data,
-#                             path=os.path.join(os.getcwd(), "data", "wakes"),
-#                             run_id=1,
-#                             verbose=True) 
-    
-#     return wakes
 
 def calculate_wake_locations(wake_df: pd.DataFrame) -> pd.DataFrame:
     
@@ -165,14 +150,14 @@ def main(
     click.echo("Generating random encounter...")
     t_range = wakes_df.index.max()
     
-    v = np.random.randint(60, 180) #in m/s: Operating speeds of an A320  
+    # v = np.random.randint(60, 180) #in m/s: Operating speeds of an A320  
     # t_target = np.random.randint(1,t_range)
-    # theta = np.random.randint(-90, 90)
+    theta = np.random.randint(-90, 90)
     # phi = np.random.randint(-10,10)
     
     v = 80
     t_target = 20
-    theta = 20
+    # theta = -83
     phi = 0
     
     print(f"Speed: {v:.2f} m/s.")
@@ -183,10 +168,10 @@ def main(
     
     # Target coordinates
     # x_target, y_target, z_target = wakes_df.x.iloc[0], np.random.uniform(data_wakes.y.min(), data_wakes.y.max()), np.random.uniform(data_wakes.z.min(), data_wakes.z.max())
-    # x_target, y_target, z_target = wakes_df.x.iloc[0], -62, 1973 #close distance for t20
+    x_target, y_target, z_target = wakes_df.x.iloc[0], -62, 1973 #close distance for t20
     # x_target, y_target, z_target = wakes_df.x.iloc[0], -200, 1930 #medium distance for t20
     # x_target, y_target, z_target = wakes_df.x.iloc[0], -500, 1900 #far distance for t20
-    x_target, y_target, z_target = wakes_df.x.iloc[0], np.random.uniform(-300, 100), np.random.uniform(1900, 2100)
+    # x_target, y_target, z_target = wakes_df.x.iloc[0], np.random.uniform(-300, 100), np.random.uniform(1900, 2100)
     
     
     params = {
@@ -202,7 +187,6 @@ def main(
     "z_target": [z_target],                          
     }
     encounter_name = f"encounter_df.parquet"
-    # save_path = os.path.join(os.getcwd(), os.pardir, "data", "simulations", "encounters", str(run_id))
     save_path = os.path.join(out_path, "encounters", str(run_id))
     os.makedirs(os.path.dirname(os.path.join(save_path, "param.parquet")), exist_ok=True)
     pd.DataFrame(params).to_parquet(os.path.join(save_path, "param.parquet"))
