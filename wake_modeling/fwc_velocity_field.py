@@ -97,7 +97,7 @@ def vortxl(wake: np.array, grid: np.array, R: np.array):
     r_v_r = wake[:,[1,5,6]]
     
     gamma_l = wake[:,4]
-    gamma_r = wake[:,7]
+    gamma_r = -wake[:,7]
     
     # calculate r1 and r2 for both vortices
     r1_l = r_v_l[1:, np.newaxis, np.newaxis, np.newaxis, :] - grid[:, :, :, :, :] - np.array([50, 0, 0])
@@ -189,7 +189,7 @@ def vortxl(wake: np.array, grid: np.array, R: np.array):
     
     return U,V,W
 
-def create_xdmf(U, V, W, save_path):
+def create_xdmf(U, V, W, save_path, dt):
     """
     Creates XDMF and binary files for the velocity field data and saves them to the specified path.
     
@@ -205,7 +205,7 @@ def create_xdmf(U, V, W, save_path):
     nx, ny, nz = int(x_range/dx+1), int(y_range/dy+1), int(z_range/dz+1)  # Number of spatial grid points
     
     # Time parameters
-    dt = 1  # Time step size
+    dt = dt  # Time step size
     t_range = U.shape[3] - 1  # Time range
     nt = int(t_range/dt + 1)  # Number of time steps
     
@@ -286,7 +286,8 @@ def main(wake_path, trajectory_path, save_path, flag):
    
    # rearranged wake so that it looks like this
    # t,x,y_l,z_l,gamma_l,y_r,z_r,gamma_r
-   
+
+   dt = np.round(encounter_df.index[1] - encounter_df.index[0], decimals=2)
    time = len(encounter)-2
    grid,R,V_inf = calcGrid(encounter)
    
@@ -300,6 +301,6 @@ def main(wake_path, trajectory_path, save_path, flag):
 
        W = np.concatenate([np.zeros_like(W[:,:,:,0])[..., np.newaxis], W], axis=3)
 
-       create_xdmf(U, V, W, save_path)
+       create_xdmf(U, V, W, save_path, dt)
    
    return V_inf,time
