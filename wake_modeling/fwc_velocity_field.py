@@ -295,7 +295,7 @@ def main(wake_path, trajectory_path, save_path, flag):
        U,V,W = vortxl(wake,grid,R)
        
        U = np.concatenate([np.zeros_like(V[:,:,:,0])[..., np.newaxis], U], axis=3)
-       U = U + V_inf
+       U = U - V_inf
        
        V = np.concatenate([np.zeros_like(V[:,:,:,0])[..., np.newaxis], V], axis=3)
 
