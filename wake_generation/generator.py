@@ -7,15 +7,10 @@ import shutil
 
 import numpy as np
 import pandas as pd
-from traffic.data import opensky, airports
 
 parent_dir = os.path.abspath("/home/kruu/git_folder/")
 if parent_dir not in sys.path:
     sys.path.append(parent_dir)
-
-root_dir = os.path.join(parent_dir, "P2P_base")
-print(f"Parent dir: {parent_dir}")
-print(f"Root dir: {root_dir}")
     
 import warnings
 warnings.simplefilter(action="ignore", category=FutureWarning)
@@ -81,8 +76,51 @@ def calculate_potential_temp(
     th = np.array(temps)*((p_ref/p) ** 0.286)
     
     return p, th
+
+def resample_and_interpolate_wake_df(wake_df: pd.DataFrame, time_step: float) -> pd.DataFrame:
+    """
+    Resamples and interpolates the entire wake_df to a finer time resolution.
     
+    Parameters:
+    - wake_df: DataFrame indexed by time (numeric index, e.g., 1, 2, 3 seconds)
+    - time_step: desired time step (e.g., 0.1 for 10 Hz)
     
+    Returns:
+    - A new DataFrame resampled and interpolated to the given time_step
+    """
+    # Ensure index is float-type and sorted
+    wake_df = wake_df.copy()
+    wake_df = wake_df.sort_index()
+    wake_df.index = wake_df.index.astype(float)
+
+    # New resampled index
+    t_min, t_max = wake_df.index.min(), wake_df.index.max()
+    new_index = np.arange(t_min, t_max + time_step, step=time_step)
+
+    # Interpolate numeric columns
+    numeric_cols = wake_df.select_dtypes(include=[np.number]).columns
+    #Linear interpolation 
+    numeric_interp = (
+        wake_df[numeric_cols]
+        .reindex(new_index)
+        .interpolate(method="index")
+        .ffill()
+        .bfill()
+    )
+
+    # Handle non-numeric (e.g., categorical) columns — use forward fill or first known value
+    non_numeric_cols = wake_df.select_dtypes(exclude=[np.number]).columns
+    non_numeric_interp = (
+        wake_df[non_numeric_cols]
+        .reindex(new_index, method="ffill")
+        .fillna(method="bfill")
+    )
+
+    # Combine both
+    wake_interp = pd.concat([numeric_interp, non_numeric_interp], axis=1)
+    wake_interp.index.name = wake_df.index.name or "t"
+
+    return wake_interp
 
 
 @click.command()
@@ -99,6 +137,7 @@ def calculate_potential_temp(
 @click.argument("speed", type=float) # speed of the aircraft in m/s
 @click.argument("mass", type=float) # mass of the aircraft in kg
 @click.argument("wingspan", type=float) # wingspan of the aircraft in m
+@click.argument("timestep", type=float) # timestep for the wake data
 
 @click.option('--wind_vertical_vel', default=0, type=float) # wind vertical velocity in m/s
 @click.option('--alt_sensor', default=10, type=float) # meteo sensor altitude above ground in m
@@ -121,6 +160,7 @@ def main(
     speed: float,
     mass: float,
     wingspan: float, 
+    timestep: float,
     wind_vertical_vel: float, 
     alt_sensor: float,
     qq: float, 
@@ -216,45 +256,31 @@ def main(
             f"{mass:15.3f}\n"
         )
     
-    # meteo_data = meteo.Meteo.from_dat_file(fpath_meteo)
-    # aircraft_data = aircraft.Aircraft.from_dat_file(fpath_aircraft)
-    # edr_data = meteo.EDR.from_meteo(meteo_data)
+    meteo_data = meteo.Meteo.from_dat_file(fpath_meteo)
+    aircraft_data = aircraft.Aircraft.from_dat_file(fpath_aircraft)
+    edr_data = meteo.EDR.from_meteo(meteo_data)
     
-    ##### DEBUG ####
+    wakes = wake.Wake.generate(aircraft=aircraft_data,
+                              meteo=meteo_data,
+                              edr=edr_data,
+                            #   path= os.path.abspath(os.path.join(os.getcwd(), os.pardir, "data", "simulations", "wakes", str(run_id))),
+                              path= os.path.abspath(os.path.join(out_path, "wakes", str(run_id))),
+                              verbose=True) 
     
-    flight = (
-        opensky.history(
-            "2018-07-04 08:58:28",
-            stop="2018-07-04 09:06:36",
-            icao24="4b1887",
-            return_flight=True,
-        )
-        .distance(airports["LSZH"])
-        .compute_xy("epsg:2056")
-    )
-    meteo_data = meteo.Meteo.from_metar('LSZH', timestamp=flight.stop, bearing=flight.at().track, extrapolate=True)
-    fpath_edr = os.path.join(root_dir, "p2p", "EDR.dat")
-    edr_data = meteo.EDR.from_dat_file(fpath_edr)
     
-    wakes = wake.Wake.generate(aircraft=flight,
-                                meteo=meteo_data,
-                                edr=edr_data,
-                                at_time=(flight.stop - pd.Timedelta('300s')),
-                                path= os.path.abspath("/home/kruu/git_folder/wake_encounter/data/test_wakes"),
-                                verbose=True) 
-    
-    #### END DEBUG ####
-    
-    # wakes = wake.Wake.generate(aircraft=aircraft_data,
-    #                           meteo=meteo_data,
-    #                           edr=edr_data,
-    #                         #   path= os.path.abspath(os.path.join(os.getcwd(), os.pardir, "data", "simulations", "wakes", str(run_id))),
-    #                           path= os.path.abspath(os.path.join(out_path, "wakes", str(run_id))),
-    #                           verbose=True) 
-    
+    ##### Debuggin purposes #####
+    # Fixing wake location + gam
+    ref_row = wakes.df.query("t == 20").iloc[0]
+    cols_to_update = ['yl', 'yr', 'gam_r', 'zr', "zl"]
+    for col in cols_to_update:
+        wakes.df[col] = ref_row[col]
     wakes.df.gam_l = 0 # Left wake tube = 0
+    ##### End Debugg #####
     
-    wakes.df.to_parquet(os.path.abspath(os.path.join(out_path, "wakes", str(run_id), "wakes_df.parquet")))
+    #interpolating
+    wakes_df = resample_and_interpolate_wake_df(wakes.df, time_step=timestep)
+        
+    wakes_df.to_parquet(os.path.abspath(os.path.join(out_path, "wakes", str(run_id), "wakes_df.parquet")))
     shutil.rmtree(os.path.abspath(os.path.join(out_path, "wakes", str(run_id), "inputs")))
     shutil.rmtree(os.path.abspath(os.path.join(out_path, "wakes", str(run_id), "results")))
     
@@ -270,7 +296,8 @@ def main(
     "tke": [tke],                 
     "speed": [speed],              
     "mass": [mass],             
-    "wingspan": [wingspan],            
+    "wingspan": [wingspan],    
+    "timestep":[timestep],        
     "wind_vertical_vel": [wind_vertical_vel],   
     "alt_sensor": [alt_sensor],       
     "qq": [qq],                  

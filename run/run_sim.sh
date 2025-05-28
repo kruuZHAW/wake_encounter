@@ -7,10 +7,10 @@
 #SBATCH --mem-per-cpu=500MB                 ## specify the memory per core
 # #SBATCH --mem=500MB                       ## alternatively, specify the memory (commented)
 #SBATCH --ntasks=1                          ## number of tasks, usually 1 in python
-#SBATCH --cpus-per-task=100                  ## number of cores
-#SBATCH --partition=defq                    ## queue (partition) to run the job in
-# #SBATCH --partition=qjupyter              ## alternative queue (commented)
-# #SBATCH --nodelist=srv-lab-t-251          ## run on a specific worker (commented)exit
+#SBATCH --cpus-per-task=50                  ## number of cores
+# #SBATCH --partition=defq                    ## queue (partition) to run the job in
+#SBATCH --partition=qjupyter              ## alternative queue (commented)
+#SBATCH --nodelist=srv-lab-t-250          ## run on a specific worker (commented)exit
 # #SBATCH --account=my_special_project      ## account to charge the job to (commented)
 
 # create output directory (doesn't do anything if it already exists)
@@ -38,6 +38,8 @@ echo "APP_ROOT: $APP_ROOT"
 # load relevant module
 module load mamba
 module load intel-oneapi
+# module load shared
+# module load slurm
 
 # activate environment
 # Note: You can activate any env that is installed in your home directory
@@ -48,4 +50,4 @@ echo "I am running with job id $SLURM_JOB_ID"
 
 # run python script in the activated environment
 # -> make sure that the path matches your setup
-python ${APP_ROOT}/run/simulation.py --n_sim 1000 --max-workers=$SLURM_CPUS_PER_TASK
+python ${APP_ROOT}/run/simulation.py --n_sim 1 --max-workers=$SLURM_CPUS_PER_TASK

@@ -84,6 +84,7 @@ def calculate_wake_locations(wake_df: pd.DataFrame) -> pd.DataFrame:
 def generate_encounter(v: float, # m/s, velocity of the aircraft
                        t_target: int, # s, time when the encounter hit the wake gate
                        time_range: int, # s, duration of the wakes
+                       timestep: float, # s, time resolution of wakes
                        x_target: float, # m, target x-coordinate
                        y_target: float, # m, target y-coordinate
                        z_target: float, # m, target altitude-coordinate
@@ -102,7 +103,7 @@ def generate_encounter(v: float, # m/s, velocity of the aircraft
     z_0 = z_target - v_z * t_target
     
     # Time range of the wake simulation
-    extended_times = np.arange(1, time_range + 1)
+    extended_times = np.arange(1, time_range + 1, step= timestep) #Step to have refined timestamps for the trailer trajectory
     
     # Hit gate marker
     hit_mask = [False] * len(extended_times)
@@ -124,8 +125,9 @@ def generate_encounter(v: float, # m/s, velocity of the aircraft
 
 
 @click.command()
-@click.argument("out_path", type=str) # simulation id
+@click.argument("out_path", type=str) 
 @click.argument("run_id", type=int) # simulation id
+@click.argument("timestep", type=float) # simulation id
 
 @click.option('--wake_id', default=0, type=int) #Wake scenario to be used
 @click.option('--aircraft_type', default="A320", type=str) # aircraft type of the trailer
@@ -134,6 +136,7 @@ def generate_encounter(v: float, # m/s, velocity of the aircraft
 def main(
     out_path:str,
     run_id:int,
+    timestep:float,
     wake_id:int,
     aircraft_type:str,
     crop_distance:int,
@@ -146,18 +149,18 @@ def main(
     
     click.echo("Extracting gate...")
     data_wakes = calculate_wake_locations(wakes_df)
-    
+
     click.echo("Generating random encounter...")
     t_range = wakes_df.index.max()
     
     # v = np.random.randint(60, 180) #in m/s: Operating speeds of an A320  
     # t_target = np.random.randint(1,t_range)
-    theta = np.random.randint(-90, 90)
+    # theta = np.random.randint(-90, 90)
     # phi = np.random.randint(-10,10)
     
     v = 80
     t_target = 20
-    # theta = -83
+    theta = 40
     phi = 0
     
     print(f"Speed: {v:.2f} m/s.")
@@ -202,6 +205,7 @@ def main(
     encounter = generate_encounter(v,
                        t_target,
                        t_range,
+                       timestep,
                        x_target,
                        y_target,
                        z_target,

@@ -112,6 +112,16 @@ def read_encounter_results(source_path: str) -> pd.DataFrame:
         if os.path.exists(results_file_path):
             df = pd.read_parquet(results_file_path)
             enc = pd.read_parquet(encounter_file_path)
-            df.index = df.index + enc.index[0] + 1 # +1 because the results are calculated for t=1 and not t=0
+            df.index = df.index + (enc.index[0] + 1)*10 # +1 because the results are calculated for t=1 and not t=0 and the simulation is for a 0.1s timestamp
+            
+            # Report distance between encounter and wake
+            distances = enc[["dist_left_wake", "dist_right_wake"]]
+            distances. index = distances.index*10
+            
+            df["dist_left_wake"] = distances["dist_left_wake"]
+            df["dist_left_wake"] = df["dist_left_wake"].interpolate(method="linear")
+            df["dist_right_wake"] = distances["dist_right_wake"]
+            df["dist_right_wake"] = df["dist_right_wake"].interpolate(method="linear")
+            
             results[int(dir_name)] = df
     return results

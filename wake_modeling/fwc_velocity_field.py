@@ -288,6 +288,7 @@ def main(wake_path, trajectory_path, save_path, flag):
    # t,x,y_l,z_l,gamma_l,y_r,z_r,gamma_r
    
    time = len(encounter)-2
+   print(f"time: {time}")
    grid,R,V_inf = calcGrid(encounter)
    
    if flag:

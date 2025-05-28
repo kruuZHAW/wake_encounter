@@ -84,5 +84,6 @@ logs/
 # Ignore the simulation and misc folders inside the data directory
 data/simulation/
 data/misc/
-.bin
-.parquet
+*.bin
+*.parquet
+*.out
