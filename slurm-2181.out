@@ -1,9 +1,0 @@
-SCRIPT_PATH: /home/kruu/git_folder/wake_encounter/run/run_sim.sh
-APP_ROOT: /home/kruu/git_folder/wake_encounter
-Sourcing /cm/shared/apps/Miniforge3/etc/profile.d/conda.sh
-Sourcing /cm/shared/apps/Miniforge3/etc/profile.d/mamba.sh
-Sourcing /cm/shared/apps/Miniforge3/etc/profile.d/conda.sh
-Sourcing /cm/shared/apps/Miniforge3/etc/profile.d/mamba.sh
-I am running on srv-lab-t-250
-I am running with job id 2181
-python: can't open file '/home/kruu/git_folder/wake_encounter/simulation.py': [Errno 2] No such file or directory

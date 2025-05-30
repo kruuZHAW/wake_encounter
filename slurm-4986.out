@@ -1,0 +1,82 @@
+SCRIPT_PATH: /home/kruu/git_folder/wake_encounter/run/run_sim.sh
+APP_ROOT: /home/kruu/git_folder/wake_encounter
+Sourcing /cm/shared/apps/Miniforge3/etc/profile.d/conda.sh
+Sourcing /cm/shared/apps/Miniforge3/etc/profile.d/mamba.sh
+Sourcing /cm/shared/apps/Miniforge3/etc/profile.d/conda.sh
+Sourcing /cm/shared/apps/Miniforge3/etc/profile.d/mamba.sh
+I am running on srv-lab-t-250
+I am running with job id 4986
+Building meteo data...
+Building aircraft data...
+/store/kruu/wake_encounter_simulations/t20_phi0_speed80_close_dist_random_theta_fixed_wake/wakes/0/inputs/1/fort.13
+ Abs path: /store/kruu/wake_encounter_simulations/t20_phi0_speed80_close_dist_ra
+ ndom_theta_fixed_wake/wakes/0
+ Run ID: 1
+ Input dir: /store/kruu/wake_encounter_simulations/t20_phi0_speed80_close_dist_r
+ andom_theta_fixed_wake/wakes/0/inputs/1
+ Results dir: /store/kruu/wake_encounter_simulations/t20_phi0_speed80_close_dist
+ _random_theta_fixed_wake/wakes/0/results/1
+ Reading file /store/kruu/wake_encounter_simulations/t20_phi0_speed80_close_dist
+ _random_theta_fixed_wake/wakes/0/inputs/1/fort.13
+ Reading file /store/kruu/wake_encounter_simulations/t20_phi0_speed80_close_dist
+ _random_theta_fixed_wake/wakes/0/inputs/1/ac_init.dat
+ 
+t0    =   24.6
+gam0  =  353.1
+b0    =   37.1
+y0    =    0.0
+x0    =    0.0
+z0    = 2000.0
+nit   =    350
+uac   =  100.0
+gpa   =    0.0
+ ----------------
+   rmsy   rmsz   rmsc
+    NaN    NaN    NaN
+ ----------------
+ ready
+
+I am here
+Done !
+Loading wakes...
+Loading wakes...
+Extracting gate...
+Generating random encounter...
+Extracting gate...
+Generating random encounter...
+Speed: 80.00 m/s.
+Target time: 20.00 s.
+Lateral angle: -45.00 degrees.
+Vertical angle: 0.00 degrees.
+X target: 2.46 m.
+Y target: -62.00 m.
+Z target: 1973.00 m.
+Done !
+Speed: 80.00 m/s.
+Target time: 20.00 s.
+Lateral angle: 7.00 degrees.
+Vertical angle: 0.00 degrees.
+X target: 2.46 m.
+Y target: -62.00 m.
+Z target: 1973.00 m.
+Done !
+/home/kruu/git_folder/sharpy/sharpy/postproc/aeroforcescalculator.py:214: RuntimeWarning: overflow encountered in add
+  total_steady_force += force[0:3, i_m, i_n]
+/home/kruu/git_folder/sharpy/sharpy/postproc/aeroforcescalculator.py:141: RuntimeWarning: invalid value encountered in matmul
+  force_g = [np.moveaxis(np.squeeze(rmat @ np.expand_dims(np.moveaxis(
+/home/kruu/git_folder/sharpy/sharpy/postproc/aeroforcescalculator.py:214: RuntimeWarning: invalid value encountered in add
+  total_steady_force += force[0:3, i_m, i_n]
+/home/kruu/.local/lib/python3.10/site-packages/numpy/core/fromnumeric.py:59: RuntimeWarning: overflow encountered in multiply
+  return bound(*args, **kwds)
+/home/kruu/.local/lib/python3.10/site-packages/numpy/core/fromnumeric.py:88: RuntimeWarning: overflow encountered in reduce
+  return ufunc.reduce(obj, axis, dtype, out, **passkwargs)
+/home/kruu/git_folder/wake_encounter/wake_modeling/fuselage_wing_configuration.py:179: RuntimeWarning: invalid value encountered in scalar add
+  loads[i,1]  = np.sum(forces_right_wing[1,:,:]) + np.sum(forces_left_wing[1,:,:]) + np.sum(forces_right_tail[1,:,:]) + np.sum(forces_right_tail[1,:,:]) + np.sum(forces_vtail[1,:,:])  # Side force
+/home/kruu/git_folder/wake_encounter/wake_modeling/fuselage_wing_configuration.py:180: RuntimeWarning: overflow encountered in scalar add
+  loads[i,2]  = np.sum(forces_right_wing[2,:,:]) + np.sum(forces_left_wing[2,:,:]) + np.sum(forces_right_tail[2,:,:]) + np.sum(forces_right_tail[2,:,:]) + np.sum(forces_vtail[2,:,:])  # Lift force
+/home/kruu/git_folder/wake_encounter/wake_modeling/fuselage_wing_configuration.py:195: RuntimeWarning: invalid value encountered in scalar add
+  loads[i,3] =  np.round((roll_moment_left_wing + roll_moment_right_wing + roll_moment_left_tail + roll_moment_right_tail + roll_moment_vtail),4) # Rolling moment
+/home/kruu/git_folder/wake_encounter/wake_modeling/fuselage_wing_configuration.py:178: RuntimeWarning: invalid value encountered in scalar add
+  loads[i,0]  = np.sum(forces_right_wing[0,:,:]) + np.sum(forces_left_wing[0,:,:]) + np.abs(np.sum(forces_right_tail[0,:,:])) + np.abs(np.sum(forces_right_tail[0,:,:])) + np.sum(forces_vtail[0,:,:]) # Drag force
+/home/kruu/.local/lib/python3.10/site-packages/numpy/core/fromnumeric.py:88: RuntimeWarning: invalid value encountered in reduce
+  return ufunc.reduce(obj, axis, dtype, out, **passkwargs)
