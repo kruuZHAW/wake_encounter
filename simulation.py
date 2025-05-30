@@ -49,7 +49,7 @@ def process_simulation(id_run):
     subprocess.run([
         "python", encounter_path, output_path, str(id_run),
         "--wake_id", "0", str(timestep), "--aircraft_type", "A320", "--crop_distance", "1500"
-    ])
+    ], stdout=subprocess.DEVNULL)
 
     subprocess.run([
         "python", fwc_path, output_path, str(id_run),
