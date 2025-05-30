@@ -21,7 +21,7 @@ def calcGrid(encounter: np.array):
 
     norms = np.linalg.norm(r_t_dir, axis=1, keepdims=True)
     
-    V_inf = np.mean(norms)
+    V_inf = np.mean(norms)/dt
     
     dir_t = r_t_dir/norms
 
@@ -290,7 +290,7 @@ def main(wake_path, trajectory_path, save_path, flag):
    dt = np.round(encounter_df.index[1] - encounter_df.index[0], decimals=2)
    time = len(encounter)-2
    print(f"time: {time}")
-   grid,R,V_inf = calcGrid(encounter)
+   grid,R,V_inf = calcGrid(encounter, dt)
    
    if flag:
        U,V,W = vortxl(wake,grid,R)
