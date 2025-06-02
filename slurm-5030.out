@@ -1,0 +1,1092 @@
+SCRIPT_PATH: /home/kruu/git_folder/wake_encounter/run/run_sim.sh
+APP_ROOT: /home/kruu/git_folder/wake_encounter
+Sourcing /cm/shared/apps/Miniforge3/etc/profile.d/conda.sh
+Sourcing /cm/shared/apps/Miniforge3/etc/profile.d/mamba.sh
+Sourcing /cm/shared/apps/Miniforge3/etc/profile.d/conda.sh
+Sourcing /cm/shared/apps/Miniforge3/etc/profile.d/mamba.sh
+I am running on srv-lab-t-250
+I am running with job id 5030
+Building meteo data...
+Building aircraft data...
+/store/kruu/wake_encounter_simulations/t20_phi0_speed80_close_dist_random_theta_fixed_wake/wakes/0/inputs/1/fort.13
+ Abs path: /store/kruu/wake_encounter_simulations/t20_phi0_speed80_close_dist_ra
+ ndom_theta_fixed_wake/wakes/0
+ Run ID: 1
+ Input dir: /store/kruu/wake_encounter_simulations/t20_phi0_speed80_close_dist_r
+ andom_theta_fixed_wake/wakes/0/inputs/1
+ Results dir: /store/kruu/wake_encounter_simulations/t20_phi0_speed80_close_dist
+ _random_theta_fixed_wake/wakes/0/results/1
+ Reading file /store/kruu/wake_encounter_simulations/t20_phi0_speed80_close_dist
+ _random_theta_fixed_wake/wakes/0/inputs/1/fort.13
+ Reading file /store/kruu/wake_encounter_simulations/t20_phi0_speed80_close_dist
+ _random_theta_fixed_wake/wakes/0/inputs/1/ac_init.dat
+ 
+t0    =   24.6
+gam0  =  353.1
+b0    =   37.1
+y0    =    0.0
+x0    =    0.0
+z0    = 2000.0
+nit   =    350
+uac   =  100.0
+gpa   =    0.0
+ ----------------
+   rmsy   rmsz   rmsc
+    NaN    NaN    NaN
+ ----------------
+ ready
+
+I am here
+        gam_l      yl        zl  ...  g_3s_hi  timediff  transport_x
+t                                ...                                
+1.0   351.949 -21.509  1998.487  ...  492.586       1.0        2.462
+2.0   350.756 -24.444  1996.974  ...  491.393       1.0        2.462
+3.0   349.563 -27.378  1995.461  ...  490.201       1.0        2.462
+4.0   348.373 -30.312  1993.948  ...  489.010       1.0        2.461
+5.0   347.184 -33.246  1992.435  ...  487.821       1.0        2.461
+6.0   345.997 -36.179  1990.922  ...  486.635       1.0        2.461
+7.0   344.813 -39.112  1989.409  ...  485.450       1.0        2.461
+8.0   343.631 -42.045  1987.896  ...  484.268       1.0        2.461
+9.0   342.452 -44.978  1986.383  ...  483.089       1.0        2.461
+10.0  341.275 -47.910  1984.870  ...  481.913       1.0        2.460
+
+[10 rows x 21 columns]
+        gam_l       yl         zl  ...   g_3s_hi  timediff  transport_x
+t                                  ...                                 
+1.0  351.9490 -21.5090  1998.4870  ...  492.5860       0.1        2.462
+1.1  351.8297 -21.8025  1998.3357  ...  492.4667       0.1        2.462
+1.2  351.7104 -22.0960  1998.1844  ...  492.3474       0.1        2.462
+1.3  351.5911 -22.3895  1998.0331  ...  492.2281       0.1        2.462
+1.4  351.4718 -22.6830  1997.8818  ...  492.1088       0.1        2.462
+1.5  351.3525 -22.9765  1997.7305  ...  491.9895       0.1        2.462
+1.6  351.2332 -23.2700  1997.5792  ...  491.8702       0.1        2.462
+1.7  351.1139 -23.5635  1997.4279  ...  491.7509       0.1        2.462
+1.8  350.9946 -23.8570  1997.2766  ...  491.6316       0.1        2.462
+1.9  350.8753 -24.1505  1997.1253  ...  491.5123       0.1        2.462
+
+[10 rows x 21 columns]
+Done !
+Loading wakes...
+Extracting gate...
+Generating random encounter...
+Speed: 80.00 m/s.
+Target time: 20.00 s.
+Lateral angle: -22.00 degrees.
+Vertical angle: 0.00 degrees.
+X target: 2.46 m.
+Y target: -62.00 m.
+Z target: 1973.00 m.
+Done !
+                      DeltaF      DeltaX         Res      ResRel      ResFrc   ResRelFrc      ResMmt   ResRelMmt         ErX       ErPos       ErPsi
+LoadStep Subiter      DeltaF     DeltaX          Res      ResRel      ResFrc   ResRelFrc      ResMmt   ResRelMmt         ErX       ErPos       ErPsi
+                      DeltaF      DeltaX         Res      ResRel      ResFrc   ResRelFrc      ResMmt   ResRelMmt         ErX       ErPos       ErPsi
+LoadStep Subiter      DeltaF     DeltaX          Res      ResRel      ResFrc   ResRelFrc      ResMmt   ResRelMmt         ErX       ErPos       ErPsi
+                      DeltaF      DeltaX         Res      ResRel      ResFrc   ResRelFrc      ResMmt   ResRelMmt         ErX       ErPos       ErPsi
+LoadStep Subiter      DeltaF     DeltaX          Res      ResRel      ResFrc   ResRelFrc      ResMmt   ResRelMmt         ErX       ErPos       ErPsi
+                      DeltaF      DeltaX         Res      ResRel      ResFrc   ResRelFrc      ResMmt   ResRelMmt         ErX       ErPos       ErPsi
+LoadStep Subiter      DeltaF     DeltaX          Res      ResRel      ResFrc   ResRelFrc      ResMmt   ResRelMmt         ErX       ErPos       ErPsi
+                      DeltaF      DeltaX         Res      ResRel      ResFrc   ResRelFrc      ResMmt   ResRelMmt         ErX       ErPos       ErPsi
+LoadStep Subiter      DeltaF     DeltaX          Res      ResRel      ResFrc   ResRelFrc      ResMmt   ResRelMmt         ErX       ErPos       ErPsi
+                      DeltaF      DeltaX         Res      ResRel      ResFrc   ResRelFrc      ResMmt   ResRelMmt         ErX       ErPos       ErPsi
+LoadStep Subiter      DeltaF     DeltaX          Res      ResRel      ResFrc   ResRelFrc      ResMmt   ResRelMmt         ErX       ErPos       ErPsi
+                      DeltaF      DeltaX         Res      ResRel      ResFrc   ResRelFrc      ResMmt   ResRelMmt         ErX       ErPos       ErPsi
+LoadStep Subiter      DeltaF     DeltaX          Res      ResRel      ResFrc   ResRelFrc      ResMmt   ResRelMmt         ErX       ErPos       ErPsi
+                      DeltaF      DeltaX         Res      ResRel      ResFrc   ResRelFrc      ResMmt   ResRelMmt         ErX       ErPos       ErPsi
+LoadStep Subiter      DeltaF     DeltaX          Res      ResRel      ResFrc   ResRelFrc      ResMmt   ResRelMmt         ErX       ErPos       ErPsi
+                      DeltaF      DeltaX         Res      ResRel      ResFrc   ResRelFrc      ResMmt   ResRelMmt         ErX       ErPos       ErPsi
+LoadStep Subiter      DeltaF     DeltaX          Res      ResRel      ResFrc   ResRelFrc      ResMmt   ResRelMmt         ErX       ErPos       ErPsi
+                      DeltaF      DeltaX         Res      ResRel      ResFrc   ResRelFrc      ResMmt   ResRelMmt         ErX       ErPos       ErPsi
+LoadStep Subiter      DeltaF     DeltaX          Res      ResRel      ResFrc   ResRelFrc      ResMmt   ResRelMmt         ErX       ErPos       ErPsi
+                      DeltaF      DeltaX         Res      ResRel      ResFrc   ResRelFrc      ResMmt   ResRelMmt         ErX       ErPos       ErPsi
+LoadStep Subiter      DeltaF     DeltaX          Res      ResRel      ResFrc   ResRelFrc      ResMmt   ResRelMmt         ErX       ErPos       ErPsi
+                      DeltaF      DeltaX         Res      ResRel      ResFrc   ResRelFrc      ResMmt   ResRelMmt         ErX       ErPos       ErPsi
+LoadStep Subiter      DeltaF     DeltaX          Res      ResRel      ResFrc   ResRelFrc      ResMmt   ResRelMmt         ErX       ErPos       ErPsi
+                      DeltaF      DeltaX         Res      ResRel      ResFrc   ResRelFrc      ResMmt   ResRelMmt         ErX       ErPos       ErPsi
+LoadStep Subiter      DeltaF     DeltaX          Res      ResRel      ResFrc   ResRelFrc      ResMmt   ResRelMmt         ErX       ErPos       ErPsi
+                      DeltaF      DeltaX         Res      ResRel      ResFrc   ResRelFrc      ResMmt   ResRelMmt         ErX       ErPos       ErPsi
+LoadStep Subiter      DeltaF     DeltaX          Res      ResRel      ResFrc   ResRelFrc      ResMmt   ResRelMmt         ErX       ErPos       ErPsi
+                      DeltaF      DeltaX         Res      ResRel      ResFrc   ResRelFrc      ResMmt   ResRelMmt         ErX       ErPos       ErPsi
+LoadStep Subiter      DeltaF     DeltaX          Res      ResRel      ResFrc   ResRelFrc      ResMmt   ResRelMmt         ErX       ErPos       ErPsi
+                      DeltaF      DeltaX         Res      ResRel      ResFrc   ResRelFrc      ResMmt   ResRelMmt         ErX       ErPos       ErPsi
+LoadStep Subiter      DeltaF     DeltaX          Res      ResRel      ResFrc   ResRelFrc      ResMmt   ResRelMmt         ErX       ErPos       ErPsi
+                      DeltaF      DeltaX         Res      ResRel      ResFrc   ResRelFrc      ResMmt   ResRelMmt         ErX       ErPos       ErPsi
+LoadStep Subiter      DeltaF     DeltaX          Res      ResRel      ResFrc   ResRelFrc      ResMmt   ResRelMmt         ErX       ErPos       ErPsi
+                      DeltaF      DeltaX         Res      ResRel      ResFrc   ResRelFrc      ResMmt   ResRelMmt         ErX       ErPos       ErPsi
+LoadStep Subiter      DeltaF     DeltaX          Res      ResRel      ResFrc   ResRelFrc      ResMmt   ResRelMmt         ErX       ErPos       ErPsi
+                      DeltaF      DeltaX         Res      ResRel      ResFrc   ResRelFrc      ResMmt   ResRelMmt         ErX       ErPos       ErPsi
+LoadStep Subiter      DeltaF     DeltaX          Res      ResRel      ResFrc   ResRelFrc      ResMmt   ResRelMmt         ErX       ErPos       ErPsi
+                      DeltaF      DeltaX         Res      ResRel      ResFrc   ResRelFrc      ResMmt   ResRelMmt         ErX       ErPos       ErPsi
+LoadStep Subiter      DeltaF     DeltaX          Res      ResRel      ResFrc   ResRelFrc      ResMmt   ResRelMmt         ErX       ErPos       ErPsi
+                      DeltaF      DeltaX         Res      ResRel      ResFrc   ResRelFrc      ResMmt   ResRelMmt         ErX       ErPos       ErPsi
+LoadStep Subiter      DeltaF     DeltaX          Res      ResRel      ResFrc   ResRelFrc      ResMmt   ResRelMmt         ErX       ErPos       ErPsi
+                      DeltaF      DeltaX         Res      ResRel      ResFrc   ResRelFrc      ResMmt   ResRelMmt         ErX       ErPos       ErPsi
+LoadStep Subiter      DeltaF     DeltaX          Res      ResRel      ResFrc   ResRelFrc      ResMmt   ResRelMmt         ErX       ErPos       ErPsi
+                      DeltaF      DeltaX         Res      ResRel      ResFrc   ResRelFrc      ResMmt   ResRelMmt         ErX       ErPos       ErPsi
+LoadStep Subiter      DeltaF     DeltaX          Res      ResRel      ResFrc   ResRelFrc      ResMmt   ResRelMmt         ErX       ErPos       ErPsi
+                      DeltaF      DeltaX         Res      ResRel      ResFrc   ResRelFrc      ResMmt   ResRelMmt         ErX       ErPos       ErPsi
+LoadStep Subiter      DeltaF     DeltaX          Res      ResRel      ResFrc   ResRelFrc      ResMmt   ResRelMmt         ErX       ErPos       ErPsi
+                      DeltaF      DeltaX         Res      ResRel      ResFrc   ResRelFrc      ResMmt   ResRelMmt         ErX       ErPos       ErPsi
+LoadStep Subiter      DeltaF     DeltaX          Res      ResRel      ResFrc   ResRelFrc      ResMmt   ResRelMmt         ErX       ErPos       ErPsi
+                      DeltaF      DeltaX         Res      ResRel      ResFrc   ResRelFrc      ResMmt   ResRelMmt         ErX       ErPos       ErPsi
+LoadStep Subiter      DeltaF     DeltaX          Res      ResRel      ResFrc   ResRelFrc      ResMmt   ResRelMmt         ErX       ErPos       ErPsi
+                      DeltaF      DeltaX         Res      ResRel      ResFrc   ResRelFrc      ResMmt   ResRelMmt         ErX       ErPos       ErPsi
+LoadStep Subiter      DeltaF     DeltaX          Res      ResRel      ResFrc   ResRelFrc      ResMmt   ResRelMmt         ErX       ErPos       ErPsi
+                      DeltaF      DeltaX         Res      ResRel      ResFrc   ResRelFrc      ResMmt   ResRelMmt         ErX       ErPos       ErPsi
+LoadStep Subiter      DeltaF     DeltaX          Res      ResRel      ResFrc   ResRelFrc      ResMmt   ResRelMmt         ErX       ErPos       ErPsi
+dt: 0.1
+Whole Simulation time: 74.9
+Adjusted Simulation time: 72.9
+time steps: 730
+********************************************************************************
+WARNING: Imported VTK version (9.3) does not match the one used
+         to build the TVTK classes (9.4). This may cause problems.
+         Please rebuild TVTK.
+********************************************************************************
+
+--------------------------------------------------------------------------------[0m
+            ######  ##     ##    ###    ########  ########  ##    ##[0m
+           ##    ## ##     ##   ## ##   ##     ## ##     ##  ##  ##[0m
+           ##       ##     ##  ##   ##  ##     ## ##     ##   ####[0m
+            ######  ######### ##     ## ########  ########     ##[0m
+                 ## ##     ## ######### ##   ##   ##           ##[0m
+           ##    ## ##     ## ##     ## ##    ##  ##           ##[0m
+            ######  ##     ## ##     ## ##     ## ##           ##[0m
+--------------------------------------------------------------------------------[0m
+Aeroelastics Lab, Aeronautics Department.[0m
+    Copyright (c), Imperial College London.[0m
+    All rights reserved.[0m
+    License available at https://github.com/imperialcollegelondon/sharpy[0m
+[36mRunning SHARPy from /home/kruu/git_folder/wake_encounter/run[0m
+[36mSHARPy being run is in /home/kruu/git_folder/sharpy[0m
+[36mThe branch being run is unknown[0m
+[36mThe version and commit hash are: unknown-unknown[0m
+SHARPy output folder set[0m
+[34m	/store/kruu/wake_encounter_simulations/t20_phi0_speed80_close_dist_random_theta_fixed_wake/encounters/0/A320_0/[0m
+[36mGenerating an instance of BeamLoader[0m
+Variable for_pos has no assigned value in the settings file.[0m
+[34m    will default to the value: [0.0, 0, 0][0m
+[36mGenerating an instance of AerogridLoader[0m
+Variable initial_align has no assigned value in the settings file.[0m
+[34m    will default to the value: True[0m
+Variable freestream_dir has no assigned value in the settings file.[0m
+[34m    will default to the value: [1.0, 0.0, 0.0][0m
+Variable control_surface_deflection has no assigned value in the settings file.[0m
+[34m    will default to the value: [][0m
+Variable control_surface_deflection_generator_settings has no assigned value in the settings file.[0m
+[34m    will default to the value: {}[0m
+Variable dx1 has no assigned value in the settings file.[0m
+[34m    will default to the value: -1.0[0m
+Variable ndx1 has no assigned value in the settings file.[0m
+[34m    will default to the value: 1[0m
+Variable r has no assigned value in the settings file.[0m
+[34m    will default to the value: 1.0[0m
+Variable dxmax has no assigned value in the settings file.[0m
+[34m    will default to the value: -1.0[0m
+[34mThe aerodynamic grid contains 5 surfaces[0m
+[34m  Surface 0, M=4, N=20[0m
+     Wake 0, M=4, N=20[0m
+[34m  Surface 1, M=4, N=20[0m
+     Wake 1, M=4, N=20[0m
+[34m  Surface 2, M=4, N=9[0m
+     Wake 2, M=4, N=9[0m
+[34m  Surface 3, M=4, N=9[0m
+     Wake 3, M=4, N=9[0m
+[34m  Surface 4, M=4, N=9[0m
+     Wake 4, M=4, N=9[0m
+  In total: 268 bound panels[0m
+  In total: 268 wake panels[0m
+  Total number of panels = 536[0m
+[36mGenerating an instance of StaticCoupled[0m
+Variable correct_forces_method has no assigned value in the settings file.[0m
+[34m    will default to the value: [0m
+Variable correct_forces_settings has no assigned value in the settings file.[0m
+[34m    will default to the value: {}[0m
+Variable runtime_generators has no assigned value in the settings file.[0m
+[34m    will default to the value: {}[0m
+[36mGenerating an instance of NonLinearStatic[0m
+Variable abs_threshold has no assigned value in the settings file.[0m
+[34m    will default to the value: 1e-13[0m
+Variable newmark_damp has no assigned value in the settings file.[0m
+[34m    will default to the value: 0.0001[0m
+Variable gravity_dir has no assigned value in the settings file.[0m
+[34m    will default to the value: [0.0, 0.0, 1.0][0m
+Variable relaxation_factor has no assigned value in the settings file.[0m
+[34m    will default to the value: 0.3[0m
+Variable dt has no assigned value in the settings file.[0m
+[34m    will default to the value: 0.01[0m
+Variable num_steps has no assigned value in the settings file.[0m
+[34m    will default to the value: 500[0m
+Variable initial_position has no assigned value in the settings file.[0m
+[34m    will default to the value: [0. 0. 0.][0m
+Variable initial_velocity has no assigned value in the settings file.[0m
+[34m    will default to the value: [0. 0. 0. 0. 0. 0.][0m
+[36mGenerating an instance of StaticUvlm[0m
+Variable n_rollup has no assigned value in the settings file.[0m
+[34m    will default to the value: 0[0m
+Variable rollup_dt has no assigned value in the settings file.[0m
+[34m    will default to the value: 0.1[0m
+Variable rollup_aic_refresh has no assigned value in the settings file.[0m
+[34m    will default to the value: 1[0m
+Variable rollup_tolerance has no assigned value in the settings file.[0m
+[34m    will default to the value: 0.0001[0m
+Variable iterative_solver has no assigned value in the settings file.[0m
+[34m    will default to the value: False[0m
+Variable iterative_tol has no assigned value in the settings file.[0m
+[34m    will default to the value: 0.0001[0m
+Variable iterative_precond has no assigned value in the settings file.[0m
+[34m    will default to the value: False[0m
+Variable cfl1 has no assigned value in the settings file.[0m
+[34m    will default to the value: True[0m
+Variable vortex_radius has no assigned value in the settings file.[0m
+[34m    will default to the value: 1e-06[0m
+Variable vortex_radius_wake_ind has no assigned value in the settings file.[0m
+[34m    will default to the value: 1e-06[0m
+Variable rbm_vel_g has no assigned value in the settings file.[0m
+[34m    will default to the value: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0][0m
+Variable centre_rot_g has no assigned value in the settings file.[0m
+[34m    will default to the value: [0.0, 0.0, 0.0][0m
+Variable map_forces_on_struct has no assigned value in the settings file.[0m
+[34m    will default to the value: False[0m
+[0m
+[0m
+[0m
+|=====|=====|============|==========|==========|==========|==========|==========|==========|[0m
+|iter |step | log10(res) |    Fx    |    Fy    |    Fz    |    Mx    |    My    |    Mz    |[0m
+|=====|=====|============|==========|==========|==========|==========|==========|==========|[0m
+|  0  |  0  |  0.00000   |-198.0545 |  0.0000  |21601.0664| -0.0001  |-77000.9838|  0.0007  |[0m
+|  1  |  0  | -10.50110  |-198.0413 |  0.0000  |21600.9586| -0.0003  |-77000.4936|  0.0006  |[0m
+|  0  |  1  |  0.00000   |-396.1203 |  0.0001  |43201.5976| -0.0015  |-153999.5272|  0.0024  |[0m
+|  1  |  1  | -10.50191  |-396.0938 |  0.0001  |43201.3821| -0.0020  |-153998.5469|  0.0024  |[0m
+|  0  |  2  |  0.00000   |-594.1972 |  0.0003  |64801.5937| -0.0043  |-230995.6305|  0.0053  |[0m
+|  1  |  2  | -10.50294  |-594.1575 |  0.0003  |64801.2711| -0.0049  |-230994.1608|  0.0052  |[0m
+|  0  |  3  |  0.00000   |-792.2854 |  0.0005  |86401.0569| -0.0083  |-307989.2960|  0.0093  |[0m
+|  1  |  3  | -10.50397  |-792.2325 |  0.0005  |86400.6268| -0.0092  |-307987.3372|  0.0092  |[0m
+|  0  |  4  |  0.00000   |-990.3849 |  0.0008  |107999.9861| -0.0137  |-384980.5249|  0.0144  |[0m
+|  1  |  4  | -10.50501  |-990.3187 |  0.0007  |107999.4483| -0.0148  |-384978.0767|  0.0142  |[0m
+|  0  |  5  |  0.00000   |-1188.4955|  0.0011  |129598.3810| -0.0204  |-461969.3168|  0.0207  |[0m
+|  1  |  5  | -10.50604  |-1188.4161|  0.0011  |129597.7356| -0.0217  |-461966.3790|  0.0204  |[0m
+|  0  |  6  |  0.00000   |-1386.6174|  0.0015  |151196.2417| -0.0284  |-538955.6710|  0.0280  |[0m
+|  1  |  6  | -10.50709  |-1386.5247|  0.0014  |151195.4889| -0.0300  |-538952.2440|  0.0277  |[0m
+|  0  |  7  |  0.00000   |-1584.7505|  0.0019  |172793.5685| -0.0378  |-615939.5888|  0.0364  |[0m
+|  1  |  7  | -10.50813  |-1584.6446|  0.0019  |172792.7077| -0.0395  |-615935.6707|  0.0361  |[0m
+|  0  |  8  |  0.00000   |-1782.8948|  0.0024  |194390.3600| -0.0484  |-692921.0649|  0.0460  |[0m
+|  1  |  8  | -10.50918  |-1782.7756|  0.0024  |194389.3922| -0.0504  |-692916.6595|  0.0456  |[0m
+|  0  |  9  |  0.00000   |-1981.0503|  0.0029  |215986.6189| -0.0604  |-769900.1096|  0.0566  |[0m
+|  1  |  9  | -10.51022  |-1980.9179|  0.0029  |215985.5434| -0.0626  |-769895.2142|  0.0562  |[0m
+|  0  | 10  |  0.00000   |-2179.2171|  0.0035  |237582.3434| -0.0737  |-846876.7159|  0.0684  |[0m
+|  1  | 10  | -10.51127  |-2179.0715|  0.0035  |237581.1602| -0.0762  |-846871.3304|  0.0679  |[0m
+|  0  | 11  |  0.00000   |-2377.3951|  0.0042  |259177.5333| -0.0883  |-923850.8837|  0.0813  |[0m
+|  1  | 11  | -10.51233  |-2377.2362|  0.0042  |259176.2423| -0.0910  |-923845.0074|  0.0807  |[0m
+|  0  | 12  |  0.00000   |-2575.5842|  0.0049  |280772.1884| -0.1043  |-1000822.6107|  0.0953  |[0m
+|  1  | 12  | -10.51338  |-2575.4121|  0.0049  |280770.7899| -0.1072  |-1000816.2451|  0.0947  |[0m
+|  0  | 13  |  0.00000   |-2773.7846|  0.0057  |302366.3095| -0.1215  |-1077791.9010|  0.1104  |[0m
+|  1  | 13  | -10.51444  |-2773.5993|  0.0057  |302364.8042| -0.1247  |-1077785.0493|  0.1097  |[0m
+|  0  | 14  |  0.00000   |-2971.9963|  0.0065  |323959.8984| -0.1401  |-1154758.7631|  0.1266  |[0m
+|  1  | 14  | -10.51551  |-2971.7977|  0.0065  |323958.2849| -0.1435  |-1154751.4190|  0.1259  |[0m
+[36mGenerating an instance of DynamicUVLM[0m
+[36mGenerating an instance of StepUvlm[0m
+Variable iterative_solver has no assigned value in the settings file.[0m
+[34m    will default to the value: False[0m
+Variable iterative_tol has no assigned value in the settings file.[0m
+[34m    will default to the value: 0.0001[0m
+Variable iterative_precond has no assigned value in the settings file.[0m
+[34m    will default to the value: False[0m
+Variable vortex_radius has no assigned value in the settings file.[0m
+[34m    will default to the value: 1e-06[0m
+Variable vortex_radius_wake_ind has no assigned value in the settings file.[0m
+[34m    will default to the value: 1e-06[0m
+Variable interp_coords has no assigned value in the settings file.[0m
+[34m    will default to the value: 0[0m
+Variable filter_method has no assigned value in the settings file.[0m
+[34m    will default to the value: 0[0m
+Variable interp_method has no assigned value in the settings file.[0m
+[34m    will default to the value: 0[0m
+Variable yaw_slerp has no assigned value in the settings file.[0m
+[34m    will default to the value: 0.0[0m
+Variable centre_rot has no assigned value in the settings file.[0m
+[34m    will default to the value: [0.0, 0.0, 0.0][0m
+Variable quasi_steady has no assigned value in the settings file.[0m
+[34m    will default to the value: False[0m
+Variable only_nonlifting has no assigned value in the settings file.[0m
+[34m    will default to the value: False[0m
+Variable centre_rot_g has no assigned value in the settings file.[0m
+[34m    will default to the value: [0.0, 0.0, 0.0][0m
+Variable print_info has no assigned value in the settings file.[0m
+[34m    will default to the value: True[0m
+[34mThe domain bbox is:[0m
+[34m x = [-100.0, 0.0][0m
+[34m y = [50.0, -50.0][0m
+[34m z = [-50.0, 50.0][0m
+[36mGenerating an instance of BeamLoads[0m
+Variable output_file_name has no assigned value in the settings file.[0m
+[34m    will default to the value: beam_loads[0m
+[0m
+[0m
+[0m
+|================|================|[0m
+|       ts       |       t        |[0m
+|================|================|[0m
+|       1        |   0.1000000    |[0m
+|       2        |   0.2000000    |[0m
+|       3        |   0.3000000    |[0m
+|       4        |   0.4000000    |[0m
+|       5        |   0.5000000    |[0m
+|       6        |   0.6000000    |[0m
+|       7        |   0.7000000    |[0m
+|       8        |   0.8000000    |[0m
+|       9        |   0.9000000    |[0m
+|       10       |   1.0000000    |[0m
+|       11       |   1.1000000    |[0m
+|       12       |   1.2000000    |[0m
+|       13       |   1.3000000    |[0m
+|       14       |   1.4000000    |[0m
+|       15       |   1.5000000    |[0m
+|       16       |   1.6000000    |[0m
+|       17       |   1.7000000    |[0m
+|       18       |   1.8000000    |[0m
+|       19       |   1.9000000    |[0m
+|       20       |   2.0000000    |[0m
+|       21       |   2.1000000    |[0m
+|       22       |   2.2000000    |[0m
+|       23       |   2.3000000    |[0m
+|       24       |   2.4000000    |[0m
+|       25       |   2.5000000    |[0m
+|       26       |   2.6000000    |[0m
+|       27       |   2.7000000    |[0m
+|       28       |   2.8000000    |[0m
+|       29       |   2.9000000    |[0m
+|       30       |   3.0000000    |[0m
+|       31       |   3.1000000    |[0m
+|       32       |   3.2000000    |[0m
+|       33       |   3.3000000    |[0m
+|       34       |   3.4000000    |[0m
+|       35       |   3.5000000    |[0m
+|       36       |   3.6000000    |[0m
+|       37       |   3.7000000    |[0m
+|       38       |   3.8000000    |[0m
+|       39       |   3.9000000    |[0m
+|       40       |   4.0000000    |[0m
+|       41       |   4.1000000    |[0m
+|       42       |   4.2000000    |[0m
+|       43       |   4.3000000    |[0m
+|       44       |   4.4000000    |[0m
+|       45       |   4.5000000    |[0m
+|       46       |   4.6000000    |[0m
+|       47       |   4.7000000    |[0m
+|       48       |   4.8000000    |[0m
+|       49       |   4.9000000    |[0m
+|       50       |   5.0000000    |[0m
+|       51       |   5.1000000    |[0m
+|       52       |   5.2000000    |[0m
+|       53       |   5.3000000    |[0m
+|       54       |   5.4000000    |[0m
+|       55       |   5.5000000    |[0m
+|       56       |   5.6000000    |[0m
+|       57       |   5.7000000    |[0m
+|       58       |   5.8000000    |[0m
+|       59       |   5.9000000    |[0m
+|       60       |   6.0000000    |[0m
+|       61       |   6.1000000    |[0m
+|       62       |   6.2000000    |[0m
+|       63       |   6.3000000    |[0m
+|       64       |   6.4000000    |[0m
+|       65       |   6.5000000    |[0m
+|       66       |   6.6000000    |[0m
+|       67       |   6.7000000    |[0m
+|       68       |   6.8000000    |[0m
+|       69       |   6.9000000    |[0m
+|       70       |   7.0000000    |[0m
+|       71       |   7.1000000    |[0m
+|       72       |   7.2000000    |[0m
+|       73       |   7.3000000    |[0m
+|       74       |   7.4000000    |[0m
+|       75       |   7.5000000    |[0m
+|       76       |   7.6000000    |[0m
+|       77       |   7.7000000    |[0m
+|       78       |   7.8000000    |[0m
+|       79       |   7.9000000    |[0m
+|       80       |   8.0000000    |[0m
+|       81       |   8.1000000    |[0m
+|       82       |   8.2000000    |[0m
+|       83       |   8.3000000    |[0m
+|       84       |   8.4000000    |[0m
+|       85       |   8.5000000    |[0m
+|       86       |   8.6000000    |[0m
+|       87       |   8.7000000    |[0m
+|       88       |   8.8000000    |[0m
+|       89       |   8.9000000    |[0m
+|       90       |   9.0000000    |[0m
+|       91       |   9.1000000    |[0m
+|       92       |   9.2000000    |[0m
+|       93       |   9.3000000    |[0m
+|       94       |   9.4000000    |[0m
+|       95       |   9.5000000    |[0m
+|       96       |   9.6000000    |[0m
+|       97       |   9.7000000    |[0m
+|       98       |   9.8000000    |[0m
+|       99       |   9.9000000    |[0m
+|      100       |   10.0000000   |[0m
+|      101       |   10.1000000   |[0m
+|      102       |   10.2000000   |[0m
+|      103       |   10.3000000   |[0m
+|      104       |   10.4000000   |[0m
+|      105       |   10.5000000   |[0m
+|      106       |   10.6000000   |[0m
+|      107       |   10.7000000   |[0m
+|      108       |   10.8000000   |[0m
+|      109       |   10.9000000   |[0m
+|      110       |   11.0000000   |[0m
+|      111       |   11.1000000   |[0m
+|      112       |   11.2000000   |[0m
+|      113       |   11.3000000   |[0m
+|      114       |   11.4000000   |[0m
+|      115       |   11.5000000   |[0m
+|      116       |   11.6000000   |[0m
+|      117       |   11.7000000   |[0m
+|      118       |   11.8000000   |[0m
+|      119       |   11.9000000   |[0m
+|      120       |   12.0000000   |[0m
+|      121       |   12.1000000   |[0m
+|      122       |   12.2000000   |[0m
+|      123       |   12.3000000   |[0m
+|      124       |   12.4000000   |[0m
+|      125       |   12.5000000   |[0m
+|      126       |   12.6000000   |[0m
+|      127       |   12.7000000   |[0m
+|      128       |   12.8000000   |[0m
+|      129       |   12.9000000   |[0m
+|      130       |   13.0000000   |[0m
+|      131       |   13.1000000   |[0m
+|      132       |   13.2000000   |[0m
+|      133       |   13.3000000   |[0m
+|      134       |   13.4000000   |[0m
+|      135       |   13.5000000   |[0m
+|      136       |   13.6000000   |[0m
+|      137       |   13.7000000   |[0m
+|      138       |   13.8000000   |[0m
+|      139       |   13.9000000   |[0m
+|      140       |   14.0000000   |[0m
+|      141       |   14.1000000   |[0m
+|      142       |   14.2000000   |[0m
+|      143       |   14.3000000   |[0m
+|      144       |   14.4000000   |[0m
+|      145       |   14.5000000   |[0m
+|      146       |   14.6000000   |[0m
+|      147       |   14.7000000   |[0m
+|      148       |   14.8000000   |[0m
+|      149       |   14.9000000   |[0m
+|      150       |   15.0000000   |[0m
+|      151       |   15.1000000   |[0m
+|      152       |   15.2000000   |[0m
+|      153       |   15.3000000   |[0m
+|      154       |   15.4000000   |[0m
+|      155       |   15.5000000   |[0m
+|      156       |   15.6000000   |[0m
+|      157       |   15.7000000   |[0m
+|      158       |   15.8000000   |[0m
+|      159       |   15.9000000   |[0m
+|      160       |   16.0000000   |[0m
+|      161       |   16.1000000   |[0m
+|      162       |   16.2000000   |[0m
+|      163       |   16.3000000   |[0m
+|      164       |   16.4000000   |[0m
+|      165       |   16.5000000   |[0m
+|      166       |   16.6000000   |[0m
+|      167       |   16.7000000   |[0m
+|      168       |   16.8000000   |[0m
+|      169       |   16.9000000   |[0m
+|      170       |   17.0000000   |[0m
+|      171       |   17.1000000   |[0m
+|      172       |   17.2000000   |[0m
+|      173       |   17.3000000   |[0m
+|      174       |   17.4000000   |[0m
+|      175       |   17.5000000   |[0m
+|      176       |   17.6000000   |[0m
+|      177       |   17.7000000   |[0m
+|      178       |   17.8000000   |[0m
+|      179       |   17.9000000   |[0m
+|      180       |   18.0000000   |[0m
+|      181       |   18.1000000   |[0m
+|      182       |   18.2000000   |[0m
+|      183       |   18.3000000   |[0m
+|      184       |   18.4000000   |[0m
+|      185       |   18.5000000   |[0m
+|      186       |   18.6000000   |[0m
+|      187       |   18.7000000   |[0m
+|      188       |   18.8000000   |[0m
+|      189       |   18.9000000   |[0m
+|      190       |   19.0000000   |[0m
+|      191       |   19.1000000   |[0m
+|      192       |   19.2000000   |[0m
+|      193       |   19.3000000   |[0m
+|      194       |   19.4000000   |[0m
+|      195       |   19.5000000   |[0m
+|      196       |   19.6000000   |[0m
+|      197       |   19.7000000   |[0m
+|      198       |   19.8000000   |[0m
+|      199       |   19.9000000   |[0m
+|      200       |   20.0000000   |[0m
+|      201       |   20.1000000   |[0m
+|      202       |   20.2000000   |[0m
+|      203       |   20.3000000   |[0m
+|      204       |   20.4000000   |[0m
+|      205       |   20.5000000   |[0m
+|      206       |   20.6000000   |[0m
+|      207       |   20.7000000   |[0m
+|      208       |   20.8000000   |[0m
+|      209       |   20.9000000   |[0m
+|      210       |   21.0000000   |[0m
+|      211       |   21.1000000   |[0m
+|      212       |   21.2000000   |[0m
+|      213       |   21.3000000   |[0m
+|      214       |   21.4000000   |[0m
+|      215       |   21.5000000   |[0m
+|      216       |   21.6000000   |[0m
+|      217       |   21.7000000   |[0m
+|      218       |   21.8000000   |[0m
+|      219       |   21.9000000   |[0m
+|      220       |   22.0000000   |[0m
+|      221       |   22.1000000   |[0m
+|      222       |   22.2000000   |[0m
+|      223       |   22.3000000   |[0m
+|      224       |   22.4000000   |[0m
+|      225       |   22.5000000   |[0m
+|      226       |   22.6000000   |[0m
+|      227       |   22.7000000   |[0m
+|      228       |   22.8000000   |[0m
+|      229       |   22.9000000   |[0m
+|      230       |   23.0000000   |[0m
+|      231       |   23.1000000   |[0m
+|      232       |   23.2000000   |[0m
+|      233       |   23.3000000   |[0m
+|      234       |   23.4000000   |[0m
+|      235       |   23.5000000   |[0m
+|      236       |   23.6000000   |[0m
+|      237       |   23.7000000   |[0m
+|      238       |   23.8000000   |[0m
+|      239       |   23.9000000   |[0m
+|      240       |   24.0000000   |[0m
+|      241       |   24.1000000   |[0m
+|      242       |   24.2000000   |[0m
+|      243       |   24.3000000   |[0m
+|      244       |   24.4000000   |[0m
+|      245       |   24.5000000   |[0m
+|      246       |   24.6000000   |[0m
+|      247       |   24.7000000   |[0m
+|      248       |   24.8000000   |[0m
+|      249       |   24.9000000   |[0m
+|      250       |   25.0000000   |[0m
+|      251       |   25.1000000   |[0m
+|      252       |   25.2000000   |[0m
+|      253       |   25.3000000   |[0m
+|      254       |   25.4000000   |[0m
+|      255       |   25.5000000   |[0m
+|      256       |   25.6000000   |[0m
+|      257       |   25.7000000   |[0m
+|      258       |   25.8000000   |[0m
+|      259       |   25.9000000   |[0m
+|      260       |   26.0000000   |[0m
+|      261       |   26.1000000   |[0m
+|      262       |   26.2000000   |[0m
+|      263       |   26.3000000   |[0m
+|      264       |   26.4000000   |[0m
+|      265       |   26.5000000   |[0m
+|      266       |   26.6000000   |[0m
+|      267       |   26.7000000   |[0m
+|      268       |   26.8000000   |[0m
+|      269       |   26.9000000   |[0m
+|      270       |   27.0000000   |[0m
+|      271       |   27.1000000   |[0m
+|      272       |   27.2000000   |[0m
+|      273       |   27.3000000   |[0m
+|      274       |   27.4000000   |[0m
+|      275       |   27.5000000   |[0m
+|      276       |   27.6000000   |[0m
+|      277       |   27.7000000   |[0m
+|      278       |   27.8000000   |[0m
+|      279       |   27.9000000   |[0m
+|      280       |   28.0000000   |[0m
+|      281       |   28.1000000   |[0m
+|      282       |   28.2000000   |[0m
+|      283       |   28.3000000   |[0m
+|      284       |   28.4000000   |[0m
+|      285       |   28.5000000   |[0m
+|      286       |   28.6000000   |[0m
+|      287       |   28.7000000   |[0m
+|      288       |   28.8000000   |[0m
+|      289       |   28.9000000   |[0m
+|      290       |   29.0000000   |[0m
+|      291       |   29.1000000   |[0m
+|      292       |   29.2000000   |[0m
+|      293       |   29.3000000   |[0m
+|      294       |   29.4000000   |[0m
+|      295       |   29.5000000   |[0m
+|      296       |   29.6000000   |[0m
+|      297       |   29.7000000   |[0m
+|      298       |   29.8000000   |[0m
+|      299       |   29.9000000   |[0m
+|      300       |   30.0000000   |[0m
+|      301       |   30.1000000   |[0m
+|      302       |   30.2000000   |[0m
+|      303       |   30.3000000   |[0m
+|      304       |   30.4000000   |[0m
+|      305       |   30.5000000   |[0m
+|      306       |   30.6000000   |[0m
+|      307       |   30.7000000   |[0m
+|      308       |   30.8000000   |[0m
+|      309       |   30.9000000   |[0m
+|      310       |   31.0000000   |[0m
+|      311       |   31.1000000   |[0m
+|      312       |   31.2000000   |[0m
+|      313       |   31.3000000   |[0m
+|      314       |   31.4000000   |[0m
+|      315       |   31.5000000   |[0m
+|      316       |   31.6000000   |[0m
+|      317       |   31.7000000   |[0m
+|      318       |   31.8000000   |[0m
+|      319       |   31.9000000   |[0m
+|      320       |   32.0000000   |[0m
+|      321       |   32.1000000   |[0m
+|      322       |   32.2000000   |[0m
+|      323       |   32.3000000   |[0m
+|      324       |   32.4000000   |[0m
+|      325       |   32.5000000   |[0m
+|      326       |   32.6000000   |[0m
+|      327       |   32.7000000   |[0m
+|      328       |   32.8000000   |[0m
+|      329       |   32.9000000   |[0m
+|      330       |   33.0000000   |[0m
+|      331       |   33.1000000   |[0m
+|      332       |   33.2000000   |[0m
+|      333       |   33.3000000   |[0m
+|      334       |   33.4000000   |[0m
+|      335       |   33.5000000   |[0m
+|      336       |   33.6000000   |[0m
+|      337       |   33.7000000   |[0m
+|      338       |   33.8000000   |[0m
+|      339       |   33.9000000   |[0m
+|      340       |   34.0000000   |[0m
+|      341       |   34.1000000   |[0m
+|      342       |   34.2000000   |[0m
+|      343       |   34.3000000   |[0m
+|      344       |   34.4000000   |[0m
+|      345       |   34.5000000   |[0m
+|      346       |   34.6000000   |[0m
+|      347       |   34.7000000   |[0m
+|      348       |   34.8000000   |[0m
+|      349       |   34.9000000   |[0m
+|      350       |   35.0000000   |[0m
+|      351       |   35.1000000   |[0m
+|      352       |   35.2000000   |[0m
+|      353       |   35.3000000   |[0m
+|      354       |   35.4000000   |[0m
+|      355       |   35.5000000   |[0m
+|      356       |   35.6000000   |[0m
+|      357       |   35.7000000   |[0m
+|      358       |   35.8000000   |[0m
+|      359       |   35.9000000   |[0m
+|      360       |   36.0000000   |[0m
+|      361       |   36.1000000   |[0m
+|      362       |   36.2000000   |[0m
+|      363       |   36.3000000   |[0m
+|      364       |   36.4000000   |[0m
+|      365       |   36.5000000   |[0m
+|      366       |   36.6000000   |[0m
+|      367       |   36.7000000   |[0m
+|      368       |   36.8000000   |[0m
+|      369       |   36.9000000   |[0m
+|      370       |   37.0000000   |[0m
+|      371       |   37.1000000   |[0m
+|      372       |   37.2000000   |[0m
+|      373       |   37.3000000   |[0m
+|      374       |   37.4000000   |[0m
+|      375       |   37.5000000   |[0m
+|      376       |   37.6000000   |[0m
+|      377       |   37.7000000   |[0m
+|      378       |   37.8000000   |[0m
+|      379       |   37.9000000   |[0m
+|      380       |   38.0000000   |[0m
+|      381       |   38.1000000   |[0m
+|      382       |   38.2000000   |[0m
+|      383       |   38.3000000   |[0m
+|      384       |   38.4000000   |[0m
+|      385       |   38.5000000   |[0m
+|      386       |   38.6000000   |[0m
+|      387       |   38.7000000   |[0m
+|      388       |   38.8000000   |[0m
+|      389       |   38.9000000   |[0m
+|      390       |   39.0000000   |[0m
+|      391       |   39.1000000   |[0m
+|      392       |   39.2000000   |[0m
+|      393       |   39.3000000   |[0m
+|      394       |   39.4000000   |[0m
+|      395       |   39.5000000   |[0m
+|      396       |   39.6000000   |[0m
+|      397       |   39.7000000   |[0m
+|      398       |   39.8000000   |[0m
+|      399       |   39.9000000   |[0m
+|      400       |   40.0000000   |[0m
+|      401       |   40.1000000   |[0m
+|      402       |   40.2000000   |[0m
+|      403       |   40.3000000   |[0m
+|      404       |   40.4000000   |[0m
+|      405       |   40.5000000   |[0m
+|      406       |   40.6000000   |[0m
+|      407       |   40.7000000   |[0m
+|      408       |   40.8000000   |[0m
+|      409       |   40.9000000   |[0m
+|      410       |   41.0000000   |[0m
+|      411       |   41.1000000   |[0m
+|      412       |   41.2000000   |[0m
+|      413       |   41.3000000   |[0m
+|      414       |   41.4000000   |[0m
+|      415       |   41.5000000   |[0m
+|      416       |   41.6000000   |[0m
+|      417       |   41.7000000   |[0m
+|      418       |   41.8000000   |[0m
+|      419       |   41.9000000   |[0m
+|      420       |   42.0000000   |[0m
+|      421       |   42.1000000   |[0m
+|      422       |   42.2000000   |[0m
+|      423       |   42.3000000   |[0m
+|      424       |   42.4000000   |[0m
+|      425       |   42.5000000   |[0m
+|      426       |   42.6000000   |[0m
+|      427       |   42.7000000   |[0m
+|      428       |   42.8000000   |[0m
+|      429       |   42.9000000   |[0m
+|      430       |   43.0000000   |[0m
+|      431       |   43.1000000   |[0m
+|      432       |   43.2000000   |[0m
+|      433       |   43.3000000   |[0m
+|      434       |   43.4000000   |[0m
+|      435       |   43.5000000   |[0m
+|      436       |   43.6000000   |[0m
+|      437       |   43.7000000   |[0m
+|      438       |   43.8000000   |[0m
+|      439       |   43.9000000   |[0m
+|      440       |   44.0000000   |[0m
+|      441       |   44.1000000   |[0m
+|      442       |   44.2000000   |[0m
+|      443       |   44.3000000   |[0m
+|      444       |   44.4000000   |[0m
+|      445       |   44.5000000   |[0m
+|      446       |   44.6000000   |[0m
+|      447       |   44.7000000   |[0m
+|      448       |   44.8000000   |[0m
+|      449       |   44.9000000   |[0m
+|      450       |   45.0000000   |[0m
+|      451       |   45.1000000   |[0m
+|      452       |   45.2000000   |[0m
+|      453       |   45.3000000   |[0m
+|      454       |   45.4000000   |[0m
+|      455       |   45.5000000   |[0m
+|      456       |   45.6000000   |[0m
+|      457       |   45.7000000   |[0m
+|      458       |   45.8000000   |[0m
+|      459       |   45.9000000   |[0m
+|      460       |   46.0000000   |[0m
+|      461       |   46.1000000   |[0m
+|      462       |   46.2000000   |[0m
+|      463       |   46.3000000   |[0m
+|      464       |   46.4000000   |[0m
+|      465       |   46.5000000   |[0m
+|      466       |   46.6000000   |[0m
+|      467       |   46.7000000   |[0m
+|      468       |   46.8000000   |[0m
+|      469       |   46.9000000   |[0m
+|      470       |   47.0000000   |[0m
+|      471       |   47.1000000   |[0m
+|      472       |   47.2000000   |[0m
+|      473       |   47.3000000   |[0m
+|      474       |   47.4000000   |[0m
+|      475       |   47.5000000   |[0m
+|      476       |   47.6000000   |[0m
+|      477       |   47.7000000   |[0m
+|      478       |   47.8000000   |[0m
+|      479       |   47.9000000   |[0m
+|      480       |   48.0000000   |[0m
+|      481       |   48.1000000   |[0m
+|      482       |   48.2000000   |[0m
+|      483       |   48.3000000   |[0m
+|      484       |   48.4000000   |[0m
+|      485       |   48.5000000   |[0m
+|      486       |   48.6000000   |[0m
+|      487       |   48.7000000   |[0m
+|      488       |   48.8000000   |[0m
+|      489       |   48.9000000   |[0m
+|      490       |   49.0000000   |[0m
+|      491       |   49.1000000   |[0m
+|      492       |   49.2000000   |[0m
+|      493       |   49.3000000   |[0m
+|      494       |   49.4000000   |[0m
+|      495       |   49.5000000   |[0m
+|      496       |   49.6000000   |[0m
+|      497       |   49.7000000   |[0m
+|      498       |   49.8000000   |[0m
+|      499       |   49.9000000   |[0m
+|      500       |   50.0000000   |[0m
+|      501       |   50.1000000   |[0m
+|      502       |   50.2000000   |[0m
+|      503       |   50.3000000   |[0m
+|      504       |   50.4000000   |[0m
+|      505       |   50.5000000   |[0m
+|      506       |   50.6000000   |[0m
+|      507       |   50.7000000   |[0m
+|      508       |   50.8000000   |[0m
+|      509       |   50.9000000   |[0m
+|      510       |   51.0000000   |[0m
+|      511       |   51.1000000   |[0m
+|      512       |   51.2000000   |[0m
+|      513       |   51.3000000   |[0m
+|      514       |   51.4000000   |[0m
+|      515       |   51.5000000   |[0m
+|      516       |   51.6000000   |[0m
+|      517       |   51.7000000   |[0m
+|      518       |   51.8000000   |[0m
+|      519       |   51.9000000   |[0m
+|      520       |   52.0000000   |[0m
+|      521       |   52.1000000   |[0m
+|      522       |   52.2000000   |[0m
+|      523       |   52.3000000   |[0m
+|      524       |   52.4000000   |[0m
+|      525       |   52.5000000   |[0m
+|      526       |   52.6000000   |[0m
+|      527       |   52.7000000   |[0m
+|      528       |   52.8000000   |[0m
+|      529       |   52.9000000   |[0m
+|      530       |   53.0000000   |[0m
+|      531       |   53.1000000   |[0m
+|      532       |   53.2000000   |[0m
+|      533       |   53.3000000   |[0m
+|      534       |   53.4000000   |[0m
+|      535       |   53.5000000   |[0m
+|      536       |   53.6000000   |[0m
+|      537       |   53.7000000   |[0m
+|      538       |   53.8000000   |[0m
+|      539       |   53.9000000   |[0m
+|      540       |   54.0000000   |[0m
+|      541       |   54.1000000   |[0m
+|      542       |   54.2000000   |[0m
+|      543       |   54.3000000   |[0m
+|      544       |   54.4000000   |[0m
+|      545       |   54.5000000   |[0m
+|      546       |   54.6000000   |[0m
+|      547       |   54.7000000   |[0m
+|      548       |   54.8000000   |[0m
+|      549       |   54.9000000   |[0m
+|      550       |   55.0000000   |[0m
+|      551       |   55.1000000   |[0m
+|      552       |   55.2000000   |[0m
+|      553       |   55.3000000   |[0m
+|      554       |   55.4000000   |[0m
+|      555       |   55.5000000   |[0m
+|      556       |   55.6000000   |[0m
+|      557       |   55.7000000   |[0m
+|      558       |   55.8000000   |[0m
+|      559       |   55.9000000   |[0m
+|      560       |   56.0000000   |[0m
+|      561       |   56.1000000   |[0m
+|      562       |   56.2000000   |[0m
+|      563       |   56.3000000   |[0m
+|      564       |   56.4000000   |[0m
+|      565       |   56.5000000   |[0m
+|      566       |   56.6000000   |[0m
+|      567       |   56.7000000   |[0m
+|      568       |   56.8000000   |[0m
+|      569       |   56.9000000   |[0m
+|      570       |   57.0000000   |[0m
+|      571       |   57.1000000   |[0m
+|      572       |   57.2000000   |[0m
+|      573       |   57.3000000   |[0m
+|      574       |   57.4000000   |[0m
+|      575       |   57.5000000   |[0m
+|      576       |   57.6000000   |[0m
+|      577       |   57.7000000   |[0m
+|      578       |   57.8000000   |[0m
+|      579       |   57.9000000   |[0m
+|      580       |   58.0000000   |[0m
+|      581       |   58.1000000   |[0m
+|      582       |   58.2000000   |[0m
+|      583       |   58.3000000   |[0m
+|      584       |   58.4000000   |[0m
+|      585       |   58.5000000   |[0m
+|      586       |   58.6000000   |[0m
+|      587       |   58.7000000   |[0m
+|      588       |   58.8000000   |[0m
+|      589       |   58.9000000   |[0m
+|      590       |   59.0000000   |[0m
+|      591       |   59.1000000   |[0m
+|      592       |   59.2000000   |[0m
+|      593       |   59.3000000   |[0m
+|      594       |   59.4000000   |[0m
+|      595       |   59.5000000   |[0m
+|      596       |   59.6000000   |[0m
+|      597       |   59.7000000   |[0m
+|      598       |   59.8000000   |[0m
+|      599       |   59.9000000   |[0m
+|      600       |   60.0000000   |[0m
+|      601       |   60.1000000   |[0m
+|      602       |   60.2000000   |[0m
+|      603       |   60.3000000   |[0m
+|      604       |   60.4000000   |[0m
+|      605       |   60.5000000   |[0m
+|      606       |   60.6000000   |[0m
+|      607       |   60.7000000   |[0m
+|      608       |   60.8000000   |[0m
+|      609       |   60.9000000   |[0m
+|      610       |   61.0000000   |[0m
+|      611       |   61.1000000   |[0m
+|      612       |   61.2000000   |[0m
+|      613       |   61.3000000   |[0m
+|      614       |   61.4000000   |[0m
+|      615       |   61.5000000   |[0m
+|      616       |   61.6000000   |[0m
+|      617       |   61.7000000   |[0m
+|      618       |   61.8000000   |[0m
+|      619       |   61.9000000   |[0m
+|      620       |   62.0000000   |[0m
+|      621       |   62.1000000   |[0m
+|      622       |   62.2000000   |[0m
+|      623       |   62.3000000   |[0m
+|      624       |   62.4000000   |[0m
+|      625       |   62.5000000   |[0m
+|      626       |   62.6000000   |[0m
+|      627       |   62.7000000   |[0m
+|      628       |   62.8000000   |[0m
+|      629       |   62.9000000   |[0m
+|      630       |   63.0000000   |[0m
+|      631       |   63.1000000   |[0m
+|      632       |   63.2000000   |[0m
+|      633       |   63.3000000   |[0m
+|      634       |   63.4000000   |[0m
+|      635       |   63.5000000   |[0m
+|      636       |   63.6000000   |[0m
+|      637       |   63.7000000   |[0m
+|      638       |   63.8000000   |[0m
+|      639       |   63.9000000   |[0m
+|      640       |   64.0000000   |[0m
+|      641       |   64.1000000   |[0m
+|      642       |   64.2000000   |[0m
+|      643       |   64.3000000   |[0m
+|      644       |   64.4000000   |[0m
+|      645       |   64.5000000   |[0m
+|      646       |   64.6000000   |[0m
+|      647       |   64.7000000   |[0m
+|      648       |   64.8000000   |[0m
+|      649       |   64.9000000   |[0m
+|      650       |   65.0000000   |[0m
+|      651       |   65.1000000   |[0m
+|      652       |   65.2000000   |[0m
+|      653       |   65.3000000   |[0m
+|      654       |   65.4000000   |[0m
+|      655       |   65.5000000   |[0m
+|      656       |   65.6000000   |[0m
+|      657       |   65.7000000   |[0m
+|      658       |   65.8000000   |[0m
+|      659       |   65.9000000   |[0m
+|      660       |   66.0000000   |[0m
+|      661       |   66.1000000   |[0m
+|      662       |   66.2000000   |[0m
+|      663       |   66.3000000   |[0m
+|      664       |   66.4000000   |[0m
+|      665       |   66.5000000   |[0m
+|      666       |   66.6000000   |[0m
+|      667       |   66.7000000   |[0m
+|      668       |   66.8000000   |[0m
+|      669       |   66.9000000   |[0m
+|      670       |   67.0000000   |[0m
+|      671       |   67.1000000   |[0m
+|      672       |   67.2000000   |[0m
+|      673       |   67.3000000   |[0m
+|      674       |   67.4000000   |[0m
+|      675       |   67.5000000   |[0m
+|      676       |   67.6000000   |[0m
+|      677       |   67.7000000   |[0m
+|      678       |   67.8000000   |[0m
+|      679       |   67.9000000   |[0m
+|      680       |   68.0000000   |[0m
+|      681       |   68.1000000   |[0m
+|      682       |   68.2000000   |[0m
+|      683       |   68.3000000   |[0m
+|      684       |   68.4000000   |[0m
+|      685       |   68.5000000   |[0m
+|      686       |   68.6000000   |[0m
+|      687       |   68.7000000   |[0m
+|      688       |   68.8000000   |[0m
+|      689       |   68.9000000   |[0m
+|      690       |   69.0000000   |[0m
+|      691       |   69.1000000   |[0m
+|      692       |   69.2000000   |[0m
+|      693       |   69.3000000   |[0m
+|      694       |   69.4000000   |[0m
+|      695       |   69.5000000   |[0m
+|      696       |   69.6000000   |[0m
+|      697       |   69.7000000   |[0m
+|      698       |   69.8000000   |[0m
+|      699       |   69.9000000   |[0m
+|      700       |   70.0000000   |[0m
+|      701       |   70.1000000   |[0m
+|      702       |   70.2000000   |[0m
+|      703       |   70.3000000   |[0m
+|      704       |   70.4000000   |[0m
+|      705       |   70.5000000   |[0m
+|      706       |   70.6000000   |[0m
+|      707       |   70.7000000   |[0m
+|      708       |   70.8000000   |[0m
+|      709       |   70.9000000   |[0m
+|      710       |   71.0000000   |[0m
+|      711       |   71.1000000   |[0m
+|      712       |   71.2000000   |[0m
+|      713       |   71.3000000   |[0m
+|      714       |   71.4000000   |[0m
+|      715       |   71.5000000   |[0m
+|      716       |   71.6000000   |[0m
+|      717       |   71.7000000   |[0m
+|      718       |   71.8000000   |[0m
+|      719       |   71.9000000   |[0m
+|      720       |   72.0000000   |[0m
+|      721       |   72.1000000   |[0m
+|      722       |   72.2000000   |[0m
+|      723       |   72.3000000   |[0m
+|      724       |   72.4000000   |[0m
+|      725       |   72.5000000   |[0m
+|      726       |   72.6000000   |[0m
+|      727       |   72.7000000   |[0m
+|      728       |   72.8000000   |[0m
+[31mException raised, writing error log in /store/kruu/wake_encounter_simulations/t20_phi0_speed80_close_dist_random_theta_fixed_wake/encounters/0/A320_0/error.log[0m
+Traceback (most recent call last):
+  File "/home/kruu/git_folder/wake_encounter/wake_modeling/fwc_wake_encounter.py", line 134, in <module>
+    main()
+  File "/home/kruu/.conda/envs/wake_encounter/lib/python3.10/site-packages/click/core.py", line 1161, in __call__
+    return self.main(*args, **kwargs)
+  File "/home/kruu/.conda/envs/wake_encounter/lib/python3.10/site-packages/click/core.py", line 1082, in main
+    rv = self.invoke(ctx)
+  File "/home/kruu/.conda/envs/wake_encounter/lib/python3.10/site-packages/click/core.py", line 1443, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+  File "/home/kruu/.conda/envs/wake_encounter/lib/python3.10/site-packages/click/core.py", line 788, in invoke
+    return __callback(*args, **kwargs)
+  File "/home/kruu/git_folder/wake_encounter/wake_modeling/fwc_wake_encounter.py", line 121, in main
+    fuselage_wing_config.run()
+  File "/home/kruu/git_folder/wake_encounter/wake_modeling/fuselage_wing_configuration.py", line 70, in run
+    sharpy.sharpy_main.main(['', self.case_route + '/' + self.case_name + '.sharpy'])  
+  File "/home/kruu/git_folder/sharpy/sharpy/sharpy_main.py", line 167, in main
+    raise e
+  File "/home/kruu/git_folder/sharpy/sharpy/sharpy_main.py", line 142, in main
+    data = solvers[solver_name].run(solvers=solvers)
+  File "/home/kruu/git_folder/sharpy/sharpy/solvers/dynamicuvlm.py", line 141, in run
+    self.data = self.aero_solver.run(aero_tstep=aero_tstep,
+  File "/home/kruu/git_folder/sharpy/sharpy/solvers/stepuvlm.py", line 227, in run
+    self.velocity_generator.generate({'zeta': aero_tstep.zeta,
+  File "/home/kruu/git_folder/sharpy/sharpy/generators/turbvelocityfield.py", line 266, in generate
+    self.update_cache(t)
+  File "/home/kruu/git_folder/sharpy/sharpy/generators/turbvelocityfield.py", line 318, in update_cache
+    self._interpolator1 = self.read_grid(self._it1, i_cache=1)
+  File "/home/kruu/git_folder/sharpy/sharpy/generators/turbvelocityfield.py", line 453, in read_grid
+    file_name = self.grid_data['grid'][i_grid][velocities[i_dim]]['file']
+IndexError: list index out of range
+                      DeltaF      DeltaX         Res      ResRel      ResFrc   ResRelFrc      ResMmt   ResRelMmt         ErX       ErPos       ErPsi
+LoadStep Subiter      DeltaF     DeltaX          Res      ResRel      ResFrc   ResRelFrc      ResMmt   ResRelMmt         ErX       ErPos       ErPsi
+                      DeltaF      DeltaX         Res      ResRel      ResFrc   ResRelFrc      ResMmt   ResRelMmt         ErX       ErPos       ErPsi
+LoadStep Subiter      DeltaF     DeltaX          Res      ResRel      ResFrc   ResRelFrc      ResMmt   ResRelMmt         ErX       ErPos       ErPsi
+Running Simulation 0...

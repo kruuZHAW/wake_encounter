@@ -50,4 +50,4 @@ echo "I am running with job id $SLURM_JOB_ID"
 
 # run python script in the activated environment
 # -> make sure that the path matches your setup
-python ${APP_ROOT}/run/simulation.py --n_sim 2 --max-workers=$SLURM_CPUS_PER_TASK
+python ${APP_ROOT}/run/simulation.py --n_sim 10 --max-workers=$SLURM_CPUS_PER_TASK
