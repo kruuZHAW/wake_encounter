@@ -77,51 +77,80 @@ def calculate_potential_temp(
     
     return p, th
 
+# def resample_and_interpolate_wake_df_test(wake_df: pd.DataFrame, time_step: float) -> pd.DataFrame:
+#     """
+#     Resamples and interpolates the entire wake_df to a finer time resolution.
+    
+#     Parameters:
+#     - wake_df: DataFrame indexed by time (numeric index, e.g., 1, 2, 3 seconds)
+#     - time_step: desired time step (e.g., 0.1 for 10 Hz)
+    
+#     Returns:
+#     - A new DataFrame resampled and interpolated to the given time_step
+#     """
+#     # Ensure index is float-type and sorted
+#     wake_df = wake_df.copy()
+#     wake_df = wake_df.sort_index()
+#     wake_df.index = wake_df.index.astype(float)
+
+#     # New resampled index
+#     t_min, t_max = wake_df.index.min(), wake_df.index.max()
+#     new_index = np.arange(t_min, t_max + time_step, step=time_step)
+
+#     # Interpolate numeric columns
+#     numeric_cols = wake_df.select_dtypes(include=[np.number]).columns
+#     #Linear interpolation 
+#     numeric_interp = (
+#         wake_df[numeric_cols]
+#         .reindex(new_index)
+#         .interpolate(method="index")
+#         .ffill()
+#         .bfill()
+#     )
+
+#     # Handle non-numeric (e.g., categorical) columns — use forward fill or first known value
+#     non_numeric_cols = wake_df.select_dtypes(exclude=[np.number]).columns
+#     non_numeric_interp = (
+#         wake_df[non_numeric_cols]
+#         .reindex(new_index, method="ffill")
+#         .fillna(method="bfill")
+#     )
+
+#     # Combine both
+#     wake_interp = pd.concat([numeric_interp, non_numeric_interp], axis=1)
+#     wake_interp.index.name = wake_df.index.name or "t"
+
+#     return wake_interp
+
 def resample_and_interpolate_wake_df(wake_df: pd.DataFrame, time_step: float) -> pd.DataFrame:
-    """
-    Resamples and interpolates the entire wake_df to a finer time resolution.
-    
-    Parameters:
-    - wake_df: DataFrame indexed by time (numeric index, e.g., 1, 2, 3 seconds)
-    - time_step: desired time step (e.g., 0.1 for 10 Hz)
-    
-    Returns:
-    - A new DataFrame resampled and interpolated to the given time_step
-    """
-    # Ensure index is float-type and sorted
-    wake_df = wake_df.copy()
-    wake_df = wake_df.sort_index()
-    wake_df.index = wake_df.index.astype(float)
+    wake_df = wake_df.copy().sort_index()
 
-    # New resampled index
+    # Generate new finer-grained index
     t_min, t_max = wake_df.index.min(), wake_df.index.max()
-    new_index = np.arange(t_min, t_max + time_step, step=time_step)
+    # new_index = np.round(np.arange(t_min, t_max + time_step, time_step), 6)
+    n_steps = int((t_max - t_min) / time_step) + 1
+    new_index = np.linspace(t_min, t_max, n_steps)
 
-    # Interpolate numeric columns
+    # Reindex and interpolate numeric columns
     numeric_cols = wake_df.select_dtypes(include=[np.number]).columns
-    #Linear interpolation 
-    numeric_interp = (
-        wake_df[numeric_cols]
-        .reindex(new_index)
-        .interpolate(method="index")
-        .ffill()
-        .bfill()
-    )
+    df_numeric = wake_df[numeric_cols].reindex(new_index)
+    df_numeric = df_numeric.interpolate(method="linear", limit_direction="both")
 
-    # Handle non-numeric (e.g., categorical) columns — use forward fill or first known value
+    # Interpolate or fill non-numeric columns
     non_numeric_cols = wake_df.select_dtypes(exclude=[np.number]).columns
-    non_numeric_interp = (
+    df_non_numeric = (
         wake_df[non_numeric_cols]
         .reindex(new_index, method="ffill")
         .fillna(method="bfill")
     )
 
-    # Combine both
-    wake_interp = pd.concat([numeric_interp, non_numeric_interp], axis=1)
-    wake_interp.index.name = wake_df.index.name or "t"
+    # Combine
+    df_interp = pd.concat([df_numeric, df_non_numeric], axis=1)
+    df_interp.index.name = wake_df.index.name or "t"
+    df_interp.index = df_interp.index.round(6) # Same rounding as encounter_df
+    df_interp["timediff"] = df_interp.index.to_series().diff().fillna(time_step)
 
-    return wake_interp
-
+    return df_interp
 
 @click.command()
 @click.argument("out_path", type=str) # simulation id for the wake
@@ -267,14 +296,13 @@ def main(
                               path= os.path.abspath(os.path.join(out_path, "wakes", str(run_id))),
                               verbose=True) 
     
-    
     ##### Debuggin purposes #####
     # Fixing wake location + gam
-    ref_row = wakes.df.query("t == 20").iloc[0]
-    cols_to_update = ['yl', 'yr', 'gam_r', 'zr', "zl"]
-    for col in cols_to_update:
-        wakes.df[col] = ref_row[col]
-    wakes.df.gam_l = 0 # Left wake tube = 0
+    # ref_row = wakes.df.query("t == 20").iloc[0]
+    # cols_to_update = ['yl', 'yr', 'gam_r', 'zr', "zl"]
+    # for col in cols_to_update:
+    #     wakes.df[col] = ref_row[col]
+    # wakes.df.gam_l = 0 # Left wake tube = 0
     ##### End Debugg #####
     
     #interpolating

@@ -104,6 +104,7 @@ def generate_encounter(v: float, # m/s, velocity of the aircraft
     
     # Time range of the wake simulation
     extended_times = np.arange(1, time_range + 1, step= timestep) #Step to have refined timestamps for the trailer trajectory
+    extended_times = np.round(extended_times, 6) # Same rounding as wakes_df index
     
     # Hit gate marker
     hit_mask = [False] * len(extended_times)
@@ -155,12 +156,12 @@ def main(
     
     # v = np.random.randint(60, 180) #in m/s: Operating speeds of an A320  
     # t_target = np.random.randint(1,t_range)
-    # theta = np.random.randint(-90, 90)
+    theta = np.random.randint(-90, 90)
     # phi = np.random.randint(-10,10)
     
     v = 80
     t_target = 20
-    theta = 40
+    # theta = 40
     phi = 0
     
     print(f"Speed: {v:.2f} m/s.")

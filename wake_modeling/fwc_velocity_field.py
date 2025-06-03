@@ -4,7 +4,7 @@ import numpy as np
 import scipy as sp
 import os
 
-def calcGrid(encounter: np.array):
+def calcGrid(encounter: np.array, dt):
     # this function needs to be modified to calculate a grid
     # step 1: retrieve orientation matrix for each timestep of encounter
     # step 2: calculate all grid points, i.e. pointing away normal to LE (x),
@@ -21,7 +21,7 @@ def calcGrid(encounter: np.array):
 
     norms = np.linalg.norm(r_t_dir, axis=1, keepdims=True)
     
-    V_inf = np.mean(norms)
+    V_inf = np.mean(norms)/dt
     
     dir_t = r_t_dir/norms
 
@@ -189,13 +189,15 @@ def vortxl(wake: np.array, grid: np.array, R: np.array):
     
     return U,V,W
 
-def create_xdmf(U, V, W, save_path, dt):
+def create_xdmf(U, V, W, save_path, nt, dt):
     """
     Creates XDMF and binary files for the velocity field data and saves them to the specified path.
     
     Parameters:
     - U, V, W: 4D numpy arrays containing velocity components.
     - save_path: str, the directory path where files will be saved.
+    - nt: number of timesteps
+    - dt: timestep
     """
     
     # Parameters
@@ -204,17 +206,11 @@ def create_xdmf(U, V, W, save_path, dt):
     x_origin, y_origin, z_origin = 0, -50, -50  # Spatial coordinate origin
     nx, ny, nz = int(x_range/dx+1), int(y_range/dy+1), int(z_range/dz+1)  # Number of spatial grid points
     
-    # Time parameters
-    dt = dt  # Time step size
-    t_range = U.shape[3] - 1  # Time range
-    nt = int(t_range/dt + 1)  # Number of time steps
-    
     # Generate spatial and time grids
     x = np.linspace(0, x_range, nx)
     y = np.linspace(0, y_range, ny)
     z = np.linspace(0, z_range, nz)
     [X, Y, Z] = np.meshgrid(x, y, z, indexing='ij')
-    time = np.linspace(0, t_range, nt)
     
     # Create binary files for each time step
     filename_prefix = 'velocity_field'
@@ -288,20 +284,27 @@ def main(wake_path, trajectory_path, save_path, flag):
    # t,x,y_l,z_l,gamma_l,y_r,z_r,gamma_r
 
    dt = np.round(encounter_df.index[1] - encounter_df.index[0], decimals=2)
-   time = len(encounter)-2
-   print(f"time: {time}")
-   grid,R,V_inf = calcGrid(encounter)
+   n_sharpy_steps = len(encounter_df) - 2
+   time = dt * n_sharpy_steps
+   grid,R,V_inf = calcGrid(encounter, dt)
+   print(f"dt: {dt}")
+   print(f"Simulation time: {time}")
+   print(f"Created grid: {grid.shape}")
    
    if flag:
+       print("before vortxl")
        U,V,W = vortxl(wake,grid,R)
+       print(f"U shape: {U.shape}")
+       print(f"V shape: {U.shape}")
+       print(f"W shape: {U.shape}")
        
        U = np.concatenate([np.zeros_like(V[:,:,:,0])[..., np.newaxis], U], axis=3)
-       U = U - V_inf
+       U = U + V_inf
        
        V = np.concatenate([np.zeros_like(V[:,:,:,0])[..., np.newaxis], V], axis=3)
 
        W = np.concatenate([np.zeros_like(W[:,:,:,0])[..., np.newaxis], W], axis=3)
 
-       create_xdmf(U, V, W, save_path, dt)
+       create_xdmf(U, V, W, save_path, n_sharpy_steps, dt)
    
    return V_inf,time

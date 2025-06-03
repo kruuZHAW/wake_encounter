@@ -172,25 +172,25 @@ def define_simulation_settings(flow, model, alpha_deg, u_inf,
                                                                 },
                                 }
     
-    settings['PlotFlowField'] = {'postproc_grid_generator': 'GridBox',
-                                 'postproc_grid_input':{'coords_0': [-100.0, -50.0, -50.0],
-                                                        'coords_1': [0.0, 50.0, 50.0],
-                                                        'spacing': [5., 5., 5.]
-                                                        },
-                                 'velocity_field_generator': 'TurbVelocityField',
-                                 'velocity_field_input': {'turbulent_field': velocity_field_route,
-                                                         'frozen': False,
-                                                         'centre_y': False,
-                                                         'offset': np.array([0, 0, 100]),
-                                                         'store_field': False,
-                                                         'periodicity': 'x'
-                                                         },
-                                 'dt':dt,
-                                 'include_external': True,
-                                 'include_induced': True,
-                                 'stride': 1,
-                                 'num_cores': 4                             
-                                 }
+    # settings['PlotFlowField'] = {'postproc_grid_generator': 'GridBox',
+    #                              'postproc_grid_input':{'coords_0': [-100.0, -50.0, -50.0],
+    #                                                     'coords_1': [0.0, 50.0, 50.0],
+    #                                                     'spacing': [5., 5., 5.]
+    #                                                     },
+    #                              'velocity_field_generator': 'TurbVelocityField',
+    #                              'velocity_field_input': {'turbulent_field': velocity_field_route,
+    #                                                      'frozen': False,
+    #                                                      'centre_y': False,
+    #                                                      'offset': np.array([0, 0, 100]),
+    #                                                      'store_field': False,
+    #                                                      'periodicity': 'x'
+    #                                                      },
+    #                              'dt':dt,
+    #                              'include_external': True,
+    #                              'include_induced': True,
+    #                              'stride': 1,
+    #                              'num_cores': 4                             
+    #                              }
     
     settings['DynamicUVLM'] = {'print_info': True,
                                 'structural_solver': dynamic_structural_solver,
@@ -201,11 +201,11 @@ def define_simulation_settings(flow, model, alpha_deg, u_inf,
                                 'dt': dt,
                                 'include_unsteady_force_contribution': False,
                                 'postprocessors': ['BeamLoads',
-                                                   'PlotFlowField',
+                                                #    'PlotFlowField',
                                                        ],
                                 'postprocessors_settings': {
                                                                 'BeamLoads': {'csv_output': False},
-                                                                'PlotFlowField': settings['PlotFlowField'],
+                                                                # 'PlotFlowField': settings['PlotFlowField'],
                                                                 },
                                 }
 
