@@ -284,12 +284,18 @@ def main(wake_path, trajectory_path, save_path, flag):
    # t,x,y_l,z_l,gamma_l,y_r,z_r,gamma_r
 
    dt = np.round(encounter_df.index[1] - encounter_df.index[0], decimals=2)
+<<<<<<< HEAD
    n_sharpy_steps = len(encounter_df) - 2
    time = dt * n_sharpy_steps
    grid,R,V_inf = calcGrid(encounter, dt)
    print(f"dt: {dt}")
    print(f"Simulation time: {time}")
    print(f"Created grid: {grid.shape}")
+=======
+   time = len(encounter)-2
+   print(f"time: {time}")
+   grid,R,V_inf = calcGrid(encounter, dt)
+>>>>>>> 2477994fd923526596251c9e46fde510f374a4b4
    
    if flag:
        print("before vortxl")
