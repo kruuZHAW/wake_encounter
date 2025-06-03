@@ -10,7 +10,7 @@ warnings.filterwarnings("ignore")
 generator_path = "/home/kruu/git_folder/wake_encounter/wake_generation/generator.py"
 encounter_path = "/home/kruu/git_folder/wake_encounter/wake_generation/trailer.py"
 fwc_path = "/home/kruu/git_folder/wake_encounter/wake_modeling/fwc_wake_encounter.py"
-output_path = "/store/kruu/wake_encounter_simulations/t20_phi0_speed80_close_dist_random_theta_fixed_wake"
+output_path = "/store/kruu/wake_encounter_simulations/t20_phi0_speed80_close_dist_random_theta_fixed_right_only_wake"
 
 
 parser = argparse.ArgumentParser()
