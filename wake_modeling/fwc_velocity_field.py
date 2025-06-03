@@ -284,19 +284,15 @@ def main(wake_path, trajectory_path, save_path, flag):
    # t,x,y_l,z_l,gamma_l,y_r,z_r,gamma_r
 
    dt = np.round(encounter_df.index[1] - encounter_df.index[0], decimals=2)
-   n_sharpy_steps = len(encounter_df) - 2
-   time = dt * n_sharpy_steps
+   n_tsteps = len(encounter_df) - 1
+   time = np.round(dt * n_tsteps, decimals=2)
    grid,R,V_inf = calcGrid(encounter, dt)
    print(f"dt: {dt}")
    print(f"Simulation time: {time}")
    print(f"Created grid: {grid.shape}")
    
    if flag:
-       print("before vortxl")
        U,V,W = vortxl(wake,grid,R)
-       print(f"U shape: {U.shape}")
-       print(f"V shape: {U.shape}")
-       print(f"W shape: {U.shape}")
        
        U = np.concatenate([np.zeros_like(V[:,:,:,0])[..., np.newaxis], U], axis=3)
        U = U + V_inf
@@ -305,6 +301,6 @@ def main(wake_path, trajectory_path, save_path, flag):
 
        W = np.concatenate([np.zeros_like(W[:,:,:,0])[..., np.newaxis], W], axis=3)
 
-       create_xdmf(U, V, W, save_path, n_sharpy_steps, dt)
+       create_xdmf(U, V, W, save_path, n_tsteps, dt)
    
-   return V_inf,time
+   return V_inf,time, n_tsteps, dt

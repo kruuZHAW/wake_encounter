@@ -298,11 +298,11 @@ def main(
     
     ##### Debuggin purposes #####
     # Fixing wake location + gam
-    # ref_row = wakes.df.query("t == 20").iloc[0]
-    # cols_to_update = ['yl', 'yr', 'gam_r', 'zr', "zl"]
-    # for col in cols_to_update:
-    #     wakes.df[col] = ref_row[col]
-    # wakes.df.gam_l = 0 # Left wake tube = 0
+    ref_row = wakes.df.query("t == 20").iloc[0]
+    cols_to_update = ['yl', 'yr', 'gam_r', 'zr', "zl"]
+    for col in cols_to_update:
+        wakes.df[col] = ref_row[col]
+    wakes.df.gam_l = 0 # Left wake tube = 0
     ##### End Debugg #####
     
     #interpolating

@@ -66,9 +66,9 @@ def main(
         if os.path.exists(v_field_path):
             shutil.rmtree(v_field_path)
         os.makedirs(v_field_path)
-        V_inf,time = fwc_velocity_field.main(wake_path, traj_path, v_field_path, v_field)
+        V_inf,time, n_tsteps, dt = fwc_velocity_field.main(wake_path, traj_path, v_field_path, v_field)
     else:
-        V_inf,time = fwc_velocity_field.main(wake_path, traj_path, v_field_path, v_field)
+        V_inf,time, n_tsteps, dt = fwc_velocity_field.main(wake_path, traj_path, v_field_path, v_field)
 
     # Create an instance of Fuselage_Wing_Configuration
     fuselage_wing_config = Fuselage_Wing_Configuration(case_name, case_route, output_route)
@@ -109,8 +109,8 @@ def main(
         alpha_deg=2.0,  # Angle of attack
         u_inf=V_inf,  # Freestream velocitys
         lifting_only=True,  # Include fuselage
-        dt=0.1,  # Time step for dynamic simulations (if applicable)
-        n_tsteps=int(time/0.1), # division by dt
+        dt=dt,  # Time step for dynamic simulations (if applicable)
+        n_tsteps=n_tsteps - 2, # Number of timesteps for dynamic vlm (-2 for the interpolation in TurbVelocityField.py to happend smoothly)
         n_step=15,  # Number of load steps for static coupled simulations
         velocity_field_route = os.path.join(v_field_path, "velocity_field.xdmf")
     )
