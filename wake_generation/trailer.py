@@ -6,6 +6,8 @@ parent_dir = os.path.abspath("/home/kruu/git_folder/")
 root_dir = os.path.join(parent_dir, "P2P_base")
 if parent_dir not in sys.path:
     sys.path.append(root_dir)
+    
+from random import sample
 
 import utils.viz as viz
 
@@ -156,12 +158,13 @@ def main(
     
     # v = np.random.randint(60, 180) #in m/s: Operating speeds of an A320  
     # t_target = np.random.randint(1,t_range)
-    theta = np.random.randint(-90, 90)
+    # theta = np.random.randint(-90, 90)
+    theta = sample([-90, -80, -60, -45, -30, -20, -10, 0, 10, 20, 30, 45, 60, 80, 90], 1)[0]
     # phi = np.random.randint(-10,10)
     
     v = 80
     t_target = 20
-    # theta = 40
+    # theta = 0
     phi = 0
     
     print(f"Speed: {v:.2f} m/s.")
@@ -171,10 +174,11 @@ def main(
     
     
     # Target coordinates
+    # Left Wake at t = 20 : x = 0, y_l = -77.225, z_l = 1969.740
+    # Right Wake at t = 20, x = 0, y_r = -40.082, z_r = 1969.740
+    
     # x_target, y_target, z_target = wakes_df.x.iloc[0], np.random.uniform(data_wakes.y.min(), data_wakes.y.max()), np.random.uniform(data_wakes.z.min(), data_wakes.z.max())
-    x_target, y_target, z_target = wakes_df.x.iloc[0], -62, 1973 #close distance for t20
-    # x_target, y_target, z_target = wakes_df.x.iloc[0], -200, 1930 #medium distance for t20
-    # x_target, y_target, z_target = wakes_df.x.iloc[0], -500, 1900 #far distance for t20
+    x_target, y_target, z_target = wakes_df.x.iloc[0], -40.082, 1969.740
     # x_target, y_target, z_target = wakes_df.x.iloc[0], np.random.uniform(-300, 100), np.random.uniform(1900, 2100)
     
     

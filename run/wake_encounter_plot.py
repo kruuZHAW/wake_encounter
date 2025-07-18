@@ -1,10 +1,11 @@
 import os
+from typing import Tuple
 import numpy as np
 import pandas as pd
+import plotly.express as px
 import plotly.graph_objects as go
 import plotly.offline as py_offline
 import sys
-
 
 def calculate_wake_locations(wake_df: pd.DataFrame, viz) -> pd.DataFrame:
     data_l = wake_df[["yl", "zl", "gam_l"]].rename(columns={"yl": "y", "zl": "z", "gam_l": "gam"})
